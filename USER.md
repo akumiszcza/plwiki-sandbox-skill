@@ -3,7 +3,7 @@
 - **Name:** Adam
 - **What to call them:** Adam
 - **Pronouns:** (unset)
-- **Timezone:** UTC (assumed; confirm if different)
+- **Timezone:** Europe/Warsaw
 - **Notes:** Prefers replies short but not formal.
 
 ## Context
