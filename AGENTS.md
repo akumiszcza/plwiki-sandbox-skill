@@ -124,6 +124,8 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
 
+Gmail webhook parsing: the Gmail hook/parser MUST use the canonical rules defined in FORMATS.md when producing canonical single-line entries (lot:: / hotel:: / pociąg::). This ensures consistency between automated parses and manual edits. If a parser-plugin mapping exists, point it to /home/ubuntu/.openclaw/workspace/FORMATS.md.
+
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 
 **📝 Platform Formatting:**
