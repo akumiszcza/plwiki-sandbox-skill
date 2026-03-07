@@ -36,4 +36,8 @@ Notes:
 - Don't use station short names, these are not as standard as airport codes
 - keep line compact and include wagon/miejsca in braces.
 
+Duration calculation and timezones:
+- If a forwarded message lacks an explicit duration, compute it from the start and end datetimes when both are available. All times in emails are in the local time of the airport/station unless otherwise stated. When origin and destination are in different time zones, convert both timestamps to UTC (or a common zone) before computing duration. Take Daylight Saving Time (DST) into account for the specific dates.
+- If only a departure time is present and no arrival time can be recovered from the message or ticket PDF, leave duration blank and flag the entry for manual review.
+
 If you want to change any rule, tell me the exact line to update in FORMATS.md and I will apply it. I will always consult this file when generating formatted lines and when correcting previous entries.
