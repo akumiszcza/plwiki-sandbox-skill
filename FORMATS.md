@@ -5,7 +5,7 @@ Purpose: canonical examples and rules I will use when extracting and writing tra
 GENERAL RULES
 - Use airport IATA codes only (e.g. GDN, WAW, OTP). Do not write full airport names in formatted lines.
 - Use commas, not em dashes.
-- Seat notation: compact in braces, e.g. {27ABC} or {8A,8B,8C} for multiple seats.
+- Seat notation: compact in braces, e.g. {27ABC} or {8ABC,9A} for multiple seats.
 - Put PNR/ref as `ref XYZ` immediately after airline/flight segment info.
 - Times: use ISO-ish compact datetimes: YYYY-MM-DDTHH:MM/HH:MM — eg 2026-07-25T08:25/09:20, with duration in parentheses after the time block.
 - Baggage: comma-separated after seats, e.g. `23kg + 8kg + przedmiot osobisty`.
@@ -26,12 +26,14 @@ hotel:: 2026-07-08T13:00/2026-07-13T12:00 Villa Mary Elen (Milos), Apollonia, Po
 
 Notes:
 - Use check-in datetime / check-out datetime. Keep location fields as comma-separated address.
+- Use Polish names of the country in address of hotels
 
 TRAIN - canonical:
 
-pociąg:: 2026-03-21T09:48/13:09 GDN Gł. ⇒ POZ Gł. IC 5412 {Wagon 14 kl. 2 miejsca 42,48,51,53} , bilet WH47801539, 170.40 PLN
+pociąg:: 2026-03-21T09:48/13:09 Gdańsk Gł. ⇒ Poznań Gł. IC 5412 {Wagon 14 kl. 2 miejsca 42,48,51,53} , bilet WH47801539, 170.40 PLN
 
 Notes:
-- Use station short names when practical; main rule is keep line compact and include wagon/miejsca in braces.
+- Don't use station short names, these are not as standard as airport codes
+- keep line compact and include wagon/miejsca in braces.
 
 If you want to change any rule, tell me the exact line to update in FORMATS.md and I will apply it. I will always consult this file when generating formatted lines and when correcting previous entries.
