@@ -123,3 +123,44 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Notes:
   - do not edit the source import in place during normal conversion work
   - remove the source-root file only when the PL version is fully converted and accepted as done
+
+
+## References and citation templates
+
+### Convert enwiki citation templates to plwiki citation templates
+- Source: `{{Cite web}}`, `{{cite web}}`, `{{cite news}}`, `{{cite magazine}}`
+- Preferred action:
+  - web pages -> `{{Cytuj stronę}}`
+  - newspapers / magazines / periodicals -> `{{Cytuj pismo}}`
+- Notes: do not leave English template names in the final plwiki draft
+
+### Prefer Polish parameter names in citation templates
+- Pattern: English citation params copied from enwiki
+- Preferred action: convert to Polish primary parameter names used on plwiki
+- Common mappings:
+  - `last` -> `nazwisko`
+  - `first` -> `imię`
+  - `title` -> `tytuł`
+  - `date` -> `data`
+  - `access-date` -> `data dostępu`
+  - `website` -> `opublikowany`
+  - `work` -> `praca`
+  - `archive-url` -> `archiwum`
+  - `archive-date` -> `zarchiwizowano`
+  - `author-link` -> `autor link`
+- Notes: plwiki docs explicitly prefer primary Polish names, even if some aliases may work
+
+### Normalize citation dates to ISO-like form
+- Pattern: English textual dates inside citation templates
+- Preferred action: use `RRRR-MM-DD` whenever full date is known
+- Notes: applies especially to `data`, `data dostępu`, `zarchiwizowano`
+
+### Remove unsupported enwiki-only citation params
+- Pattern: params like `url-status=live`
+- Preferred action: remove unless there is a confirmed plwiki equivalent in active use
+
+### Paywalled article note
+- Pattern: source has `url-access=subscription`
+- Preferred action: replace with an explicit Polish note or template only if there is a confirmed plwiki convention; otherwise add a small manual note
+- Current safe draft pattern: `|id={{Subskrypcja wymagana}}`
+- Notes: verify later whether a better house style exists on plwiki
