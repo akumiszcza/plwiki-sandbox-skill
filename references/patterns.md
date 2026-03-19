@@ -201,3 +201,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `[[Kategoria:Wolne i otwarte oprogramowanie]]`
   - `[[Kategoria:Oprogramowanie na licencji MIT]]`
   - `[[Kategoria:Sztuczna inteligencja]]`
+
+
+### Oprogramowanie infobox strictness on plwiki
+- Pattern: `{{Oprogramowanie infobox}}` rejects guessed fields and expects plain file/url values in some fields
+- Preferred action:
+  - use only documented parameters
+  - `logo` should usually be the bare filename, not embedded `[[Plik:...]]`
+  - `www` should be a plain URL, not `{{URL|...}}`
+  - `pierwsze wydanie` works reliably with `{{Dts|DD|MM|YYYY}}`
+  - unsupported guessed fields like `inne nazwy` should be moved into article prose, not forced into the infobox
+- Notes: if preview reports "Nieznane pola" or "Nieprawidłowe/puste pola", treat the template docs as authoritative and simplify
