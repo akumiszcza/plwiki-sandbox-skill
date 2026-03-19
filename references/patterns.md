@@ -164,3 +164,40 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: replace with an explicit Polish note or template only if there is a confirmed plwiki convention; otherwise add a small manual note
 - Current safe draft pattern: `|id={{Subskrypcja wymagana}}`
 - Notes: verify later whether a better house style exists on plwiki
+
+
+### Verify actual plwiki page titles before repointing links
+- Pattern: enwiki disambiguated links often do not match plwiki titles exactly
+- Preferred action: search plwiki and use the real target title
+- Examples:
+  - `[[Swift (programming language)|Swift]]` -> `[[Swift (język programowania LLVM)|Swift]]`
+  - `[[Claude (language model)|Claude]]` -> `[[Claude (model językowy)|Claude]]`
+  - `[[large language model]]` -> `[[Duży model językowy]]`
+
+### Prefer real plwiki infobox template names
+- Pattern: translated or guessed infobox names such as `Infobox oprogramowanie`
+- Preferred action: replace with the actual plwiki template name after verification
+- Example:
+  - guessed: `{{Infobox oprogramowanie ...}}`
+  - verified: `{{Oprogramowanie infobox ...}}`
+
+### Software infobox field mapping, verified on plwiki
+- Verified template: `{{Oprogramowanie infobox}}`
+- High-confidence mappings:
+  - `name` -> `nazwa`
+  - `developer` -> `autor`
+  - `released` -> `pierwsze wydanie`
+  - `programming_language` -> `język programowania`
+  - `operating_system` -> `system operacyjny`
+  - `genre` -> `rodzaj`
+  - `license` -> `licencja`
+  - `website` -> `www`
+- Notes: `repo` is not a standard visible field in the verified plwiki infobox template doc fetched during OpenClaw pass
+
+### Category selection for software drafts
+- Pattern: article about open-source software with AI focus and MIT license
+- Preferred action: add only broad, clearly verified categories when article-specific ones are uncertain
+- Safe examples used in OpenClaw draft:
+  - `[[Kategoria:Wolne i otwarte oprogramowanie]]`
+  - `[[Kategoria:Oprogramowanie na licencji MIT]]`
+  - `[[Kategoria:Sztuczna inteligencja]]`
