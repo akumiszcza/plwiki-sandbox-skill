@@ -212,3 +212,13 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `pierwsze wydanie` works reliably with `{{Dts|DD|MM|YYYY}}`
   - unsupported guessed fields like `inne nazwy` should be moved into article prose, not forced into the infobox
 - Notes: if preview reports "Nieznane pola" or "Nieprawidłowe/puste pola", treat the template docs as authoritative and simplify
+
+
+### `Cytuj pismo` uses `czasopismo`, not `praca`
+- Pattern: enwiki `cite news` / `cite magazine` converted to `{{Cytuj pismo}}`
+- Preferred action: map publication title to `|czasopismo=`
+- Do not use: `|praca=` inside `{{Cytuj pismo}}`
+- Example:
+  - in: `{{cite news |work=The Verge |title=...}}`
+  - out: `{{Cytuj pismo |czasopismo=The Verge |tytuł=...}}`
+- Notes: preview errors on plwiki explicitly flag `praca` as unknown for this template
