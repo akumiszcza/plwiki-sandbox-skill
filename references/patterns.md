@@ -249,3 +249,18 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: translated sentence keeps too many English-style subordinate clauses
 - Preferred action: split into two shorter Polish sentences when readability improves
 - Example: describe the incident first, then explain the consent issue in a second sentence
+
+
+### Cite language consistently for foreign-language sources
+- Pattern: some foreign-language references display `(ang.)` while others do not because `język=` is present only on some citations
+- Preferred action: add `|język=` consistently for non-Polish sources when the source language is clear
+- Common values:
+  - English sources: `|język=en`
+  - US English sources may also appear as `|język=en-US`, but prefer one consistent style within the article when practical
+  - Chinese external links in prose/link sections should be visibly labeled in Polish, e.g. `(w języku chińskim)`
+- Notes: consistency improves reader expectations in generated citation output
+
+### Footnote placement rule from plwiki help page
+- Source: `Pomoc:Przypisy`
+- Rule: place the footnote marker directly after the supported text and before punctuation; exception: if the sentence ends with an abbreviation already ending in a period, place the footnote after that period and do not duplicate the period
+- Notes: treat `Pomoc:Przypisy` as the authoritative citation-placement reference for future conversions
