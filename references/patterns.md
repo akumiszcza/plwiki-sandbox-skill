@@ -222,3 +222,17 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - in: `{{cite news |work=The Verge |title=...}}`
   - out: `{{Cytuj pismo |czasopismo=The Verge |tytuł=...}}`
 - Notes: preview errors on plwiki explicitly flag `praca` as unknown for this template
+
+
+### Polish footnote punctuation rule
+- Pattern: inline references in Polish prose
+- Preferred action: place `<ref>...</ref>` immediately after the referenced word/phrase and before the punctuation mark ending the sentence or clause
+- Example:
+  - correct: `...w autentyczny sposób<ref>...</ref>.`
+  - wrong: `...w autentyczny sposób.<ref>...</ref>`
+- Notes: treat this as a final proofreading pass item for every article
+
+### Safer external-link fallback for broken sister-project templates
+- Pattern: interwiki/sister-project template renders badly or points to a dead target
+- Preferred action: replace it with a normal external link until a verified local template form is known
+- Example: replace a broken `{{wikisource|...}}` with `* [URL label]`
