@@ -236,3 +236,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: interwiki/sister-project template renders badly or points to a dead target
 - Preferred action: replace it with a normal external link until a verified local template form is known
 - Example: replace a broken `{{wikisource|...}}` with `* [URL label]`
+
+
+### Broken red utility templates in external links
+- Pattern: imported article uses helper templates that do not exist on plwiki, e.g. GitHub / official-site templates
+- Preferred action: replace them with normal external links using a clear Polish label
+- Examples:
+  - `{{GitHub|https://github.com/org/repo}}` -> `[https://github.com/org/repo Repozytorium projektu w serwisie GitHub]`
+  - broken official-site helper -> `[https://example.com Oficjalna strona]`
+
+### Prefer simpler Polish sentences over source-like clause stacking
+- Pattern: translated sentence keeps too many English-style subordinate clauses
+- Preferred action: split into two shorter Polish sentences when readability improves
+- Example: describe the incident first, then explain the consent issue in a second sentence
