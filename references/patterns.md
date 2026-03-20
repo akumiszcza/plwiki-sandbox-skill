@@ -122,7 +122,7 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: save the translated/adapted version as `PL/<same-filename>.mediawiki`
 - Notes:
   - do not edit the source import in place during normal conversion work
-  - remove the source-root file only when the PL version is fully converted and accepted as done
+  - even when the PL version looks done, do not remove the source-root file yourself unless Adam explicitly asks; Adam may still want manual edits first
 
 
 ## References and citation templates
