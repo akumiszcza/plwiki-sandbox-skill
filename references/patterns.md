@@ -295,3 +295,24 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Example:
   - instead of `skille z lokalnego workspace'u`
   - prefer `skille przechowywane w lokalnej przestrzeni roboczej`
+
+
+## Iterative preview workflow
+
+### Large-article preview cycle
+- Pattern: long article conversion is too large to perfect in one pass
+- Preferred action:
+  1. create a first full Polish draft in `PL/`
+  2. send it for live plwiki preview
+  3. fix parser/template/link/reference problems reported by the preview
+  4. repeat until preview is clean enough for manual editorial review
+- Notes: for large articles, prioritize getting to a previewable full draft over polishing every citation in the first pass
+
+### Preview-driven fixing order
+- Preferred order after receiving plwiki preview feedback:
+  1. red/broken templates and parser errors
+  2. empty or broken references
+  3. obvious wrong or red internal links
+  4. section/portal/footer cleanup
+  5. style and prose refinement
+- Notes: this order gives the fastest path to a usable next preview
