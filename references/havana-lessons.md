@@ -14,6 +14,11 @@ Add only lessons likely to recur in future article conversions.
 - Preferred action: convert one instance into a named ref and replace later copies with `<ref name="..." />`
 - Notes: do this after parser/template stability, not before
 
+### When trimming the lead, re-home named ref definitions
+- Pattern: a lead cleanup removes a sentence that originally contained the full definition of a named citation reused later in the article
+- Preferred action: move the full `<ref name="...">...</ref>` body to the first surviving later use in the main text
+- Failure mode: preview throws `Błąd w składni elementu <ref>. Brak tekstu w przypisie o nazwie ...`
+
 ## Infoboxes
 
 ### `Choroba infobox` should be added cautiously

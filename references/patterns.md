@@ -317,3 +317,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   4. section/portal/footer cleanup
   5. style and prose refinement
 - Notes: this order gives the fastest path to a usable next preview
+
+### Lead simplification must not orphan named references
+- Pattern: a cleanup pass removes or rewrites a lead sentence that previously contained the defining `<ref name="...">...</ref>` for a named citation used later in the article
+- Preferred action: after removing that sentence, move the full reference definition to the first remaining in-body use before pushing
+- Notes: otherwise preview may show `Brak tekstu w przypisie o nazwie ...`
+
+### Published-article handoff
+- Pattern: article has been accepted/published on plwiki and the original source file is archived to `done/`
+- Preferred action:
+  1. confirm the published title/link
+  2. note any final lessons worth preserving in the skill
+  3. treat the repo state (`PL/`, root, `done/`) as the new baseline before starting the next article
+- Notes: do not keep reasoning from the previous article implicit across `/new`; write durable workflow lessons down first
