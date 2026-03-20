@@ -231,7 +231,10 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Example:
   - correct: `...w autentyczny sposób<ref>...</ref>.`
   - wrong: `...w autentyczny sposób.<ref>...</ref>`
-- Notes: treat this as a final proofreading pass item for every article
+- Notes:
+  - treat this as a final proofreading pass item for every article
+  - treat this as a high-priority preview check, not optional polish
+  - after larger cleanup passes, re-check the whole article because automated rewrites can easily push refs back to the wrong side of punctuation
 
 ### Safer external-link fallback for broken sister-project templates
 - Pattern: interwiki/sister-project template renders badly or points to a dead target
@@ -313,9 +316,10 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred order after receiving plwiki preview feedback:
   1. red/broken templates and parser errors
   2. empty or broken references
-  3. obvious wrong or red internal links
-  4. section/portal/footer cleanup
-  5. style and prose refinement
+  3. footnote placement and citation rendering rules from plwiki (`Pomoc:Przypisy`)
+  4. obvious wrong or red internal links
+  5. section/portal/footer cleanup
+  6. style and prose refinement
 - Notes: this order gives the fastest path to a usable next preview
 
 ### Lead simplification must not orphan named references
