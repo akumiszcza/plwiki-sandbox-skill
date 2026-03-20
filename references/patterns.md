@@ -303,9 +303,10 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: long article conversion is too large to perfect in one pass
 - Preferred action:
   1. create a first full Polish draft in `PL/`
-  2. send it for live plwiki preview
-  3. fix parser/template/link/reference problems reported by the preview
-  4. repeat until preview is clean enough for manual editorial review
+  2. if preview is driven from GitHub, commit and push that checkpoint
+  3. send it for live plwiki preview
+  4. fix parser/template/link/reference problems reported by the preview in small passes
+  5. repeat until preview is clean enough for manual editorial review
 - Notes: for large articles, prioritize getting to a previewable full draft over polishing every citation in the first pass
 
 ### Preview-driven fixing order

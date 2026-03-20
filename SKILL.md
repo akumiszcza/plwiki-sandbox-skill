@@ -9,6 +9,17 @@ Convert source wikitext into a Polish Wikipedia-ready draft, not a literal trans
 
 ## Core workflow
 
+GitHub-preview flow:
+
+- If the human uses GitHub state to generate preview, commit and push after each meaningful pass instead of stopping on local-only changes.
+- Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
+- For large articles, prefer this order:
+  1. get a previewable full draft into `PL/`
+  2. fix parser/template/reference errors
+  3. expand citations section by section
+  4. clean `Zobacz też`, media, and categories
+  5. do final dedup/polish
+
 Workspace flow:
 
 - Treat files in the repo root as source imports awaiting conversion.
@@ -54,6 +65,7 @@ Before presenting a converted draft, verify:
 ## Template and link handling
 
 Use `references/patterns.md` for recurring conversions.
+For article-migration lessons learned from a large medical/controversial article pass, also read `references/havana-lessons.md` when working on citations, infoboxes, media captions, or `Zobacz też` cleanup.
 
 General rules:
 
@@ -77,6 +89,8 @@ General rules:
 - Translate titles only when the cited work itself has an established Polish title or the surrounding prose needs an explanatory gloss.
 - Preserve archive URLs, access dates, and identifiers.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
+- On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview.
+- When several adjacent sentences reuse the same source, convert duplicate literal refs into named refs during cleanup instead of keeping repeated full citation bodies.
 
 ## Tables and infoboxes
 
@@ -84,6 +98,8 @@ General rules:
 - Localize headers, captions, unit labels, and explanatory notes.
 - Replace infobox parameter names only when there is a known plwiki equivalent template/parameter set.
 - If infobox conversion is incomplete, prefer a cleaned manual table or a commented TODO over broken fake syntax.
+- Treat infobox work as preview-driven: verify the exact plwiki template doc first, then add only high-confidence fields, then preview again.
+- If a plwiki infobox renders raw `{{{param}}}` placeholders or similar garbage, remove it temporarily rather than leaving a broken infobox in the draft.
 
 ## Style guidance
 
