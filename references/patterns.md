@@ -264,3 +264,13 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Source: `Pomoc:Przypisy`
 - Rule: place the footnote marker directly after the supported text and before punctuation; exception: if the sentence ends with an abbreviation already ending in a period, place the footnote after that period and do not duplicate the period
 - Notes: treat `Pomoc:Przypisy` as the authoritative citation-placement reference for future conversions
+
+
+### `język` is recommended for non-Polish sources in both citation templates
+- Source: `Szablon:Cytuj pismo` and `Szablon:Cytuj stronę`
+- Preferred action: whenever the cited source is not in Polish, fill `|język=` with the language code
+- Examples:
+  - English -> `|język=en`
+  - Dutch -> `|język=nl`
+  - US English can still be represented as `|język=en` for consistency across one article unless a more specific code is useful
+- Notes: if some foreign-language refs have `język` and others do not, normalize them for consistency in rendered output
