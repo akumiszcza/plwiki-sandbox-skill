@@ -14,7 +14,8 @@ Workspace flow:
 - Treat files in the repo root as source imports awaiting conversion.
 - Write the working Polish version into `PL/` under the same filename.
 - Keep the source file untouched during translation and review.
-- Do not remove the source file from the repo root yourself unless Adam explicitly asks for it; Adam handles source-file deletion after any manual follow-up edits.
+- When Adam considers the translation done, the source import is moved to `done/` under the same filename for archival/comparison purposes.
+- Do not delete source files yourself unless Adam explicitly asks for it.
 
 1. Read the source `.mediawiki` file fully.
 2. Identify article type, scope, and risky areas:

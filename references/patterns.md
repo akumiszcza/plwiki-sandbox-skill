@@ -122,7 +122,8 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: save the translated/adapted version as `PL/<same-filename>.mediawiki`
 - Notes:
   - do not edit the source import in place during normal conversion work
-  - even when the PL version looks done, do not remove the source-root file yourself unless Adam explicitly asks; Adam may still want manual edits first
+  - when a translation is accepted as done, archive the original by moving it to `done/<same-filename>.mediawiki`
+  - do not delete source files yourself unless Adam explicitly asks; Adam may still want manual edits first
 
 
 ## References and citation templates
@@ -274,3 +275,23 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - Dutch -> `|język=nl`
   - US English can still be represented as `|język=en` for consistency across one article unless a more specific code is useful
 - Notes: if some foreign-language refs have `język` and others do not, normalize them for consistency in rendered output
+
+
+### Put foreign-language sister-project links in External links, not See also
+- Pattern: a related link points outside plwiki, especially to a sister project in another language
+- Preferred action: place it in `== Linki zewnętrzne ==` with a Polish description and visible language note
+- Notes: `Zobacz też` should prefer internal Wikipedia navigation, not offsite or foreign-language destinations
+
+### Prefer natural grammatical agreement in infobox values
+- Pattern: imported adjective values like `cross-platform` translated mechanically
+- Preferred action: match adjective form to the field label in Polish
+- Examples:
+  - `platforma sprzętowa = wieloplatformowa`
+  - `system operacyjny = wieloplatformowy`
+
+### Prefer explicit Polish explanations over workspace jargon in article prose
+- Pattern: source-derived text mentions `workspace` or other product-internal jargon too literally
+- Preferred action: rewrite into explanatory Polish, even if it becomes slightly longer
+- Example:
+  - instead of `skille z lokalnego workspace'u`
+  - prefer `skille przechowywane w lokalnej przestrzeni roboczej`
