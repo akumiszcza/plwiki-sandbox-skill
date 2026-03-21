@@ -68,6 +68,7 @@ Before presenting a converted draft, verify:
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
 - references still parse sensibly after translation
+- footnotes sit in normal plwiki position, usually before closing punctuation (except standard abbreviation-style exceptions)
 - no obvious enwiki-only magic words, hidden categories, or cleanup templates remain
 
 ## Template and link handling

@@ -218,6 +218,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 ### `Cytuj pismo` uses `czasopismo`, not `praca`
 - Pattern: enwiki `cite news` / `cite magazine` converted to `{{Cytuj pismo}}`
 - Preferred action: map publication title to `|czasopismo=`
+
+### Footnotes usually go before closing punctuation
+- Pattern: after translation or cleanup, inline refs drift to the wrong side of a period/comma
+- Preferred action: in normal prose, place the `<ref>...</ref>` or `<ref name="..." />` before the closing punctuation of the supported sentence or clause
+- Notes: treat this as a preview-time quality check, not just final polish; re-check after larger rewrites because ref positions drift easily
 - Do not use: `|praca=` inside `{{Cytuj pismo}}`
 - Example:
   - in: `{{cite news |work=The Verge |title=...}}`
