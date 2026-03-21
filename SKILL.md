@@ -9,6 +9,12 @@ Convert source wikitext into a Polish Wikipedia-ready draft, not a literal trans
 
 ## Core workflow
 
+Memory and continuity:
+
+- Before continuing work on an article or a skill iteration, recall prior decisions, recurring pitfalls, and workflow preferences from memory when available.
+- Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
+- If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
+
 GitHub-preview flow:
 
 - If the human uses GitHub state to generate preview, commit and push after each meaningful pass instead of stopping on local-only changes.
@@ -19,6 +25,7 @@ GitHub-preview flow:
   3. expand citations section by section
   4. clean `Zobacz też`, media, and categories
   5. do final dedup/polish
+- After finishing an article, also update/push the related skill repo if a reusable lesson was learned; do not leave the workflow improvement only local.
 
 Workspace flow:
 
@@ -56,6 +63,7 @@ Before presenting a converted draft, verify:
 - lead translated into natural Polish
 - bold article title in opening sentence when appropriate
 - dates, units, punctuation, and quotations adapted to Polish usage
+- inline refs are placed according to plwiki help, normally before closing punctuation; re-check after cleanup passes because edits often move refs to the wrong side
 - internal wikilinks repointed or deliberately left plain if target is doubtful
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
