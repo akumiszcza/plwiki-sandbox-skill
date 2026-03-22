@@ -264,6 +264,8 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - treat this as a final proofreading pass item for every article
   - treat this as a high-priority preview check, not optional polish
   - after larger cleanup passes, re-check the whole article because automated rewrites can easily push refs back to the wrong side of punctuation
+  - if a user already corrected this once, treat any repeat as a process failure and update the draft before calling the pass complete
+  - do not rely on memory alone; consciously scan the article for `.<ref` and `,<ref` patterns before push or handoff
 
 ### Safer external-link fallback for broken sister-project templates
 - Pattern: interwiki/sister-project template renders badly or points to a dead target

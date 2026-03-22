@@ -71,6 +71,10 @@ Before presenting a converted draft, verify:
 - footnotes sit in normal plwiki position, usually before closing punctuation (except standard abbreviation-style exceptions)
 - no obvious enwiki-only magic words, hidden categories, or cleanup templates remain
 
+Hard stop:
+- Do not call a pass "done", "polished", or even "micro-pass complete" until ref placement has been checked article-wide.
+- If any refs still sit after the period/comma in normal prose, that is a real mistake, not acceptable polish debt.
+
 ## Template and link handling
 
 Use `references/patterns.md` for recurring conversions.
