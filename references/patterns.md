@@ -285,6 +285,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: split into two shorter Polish sentences when readability improves
 - Example: describe the incident first, then explain the consent issue in a second sentence
 
+### Lock preferred Polish terminology once chosen
+- Pattern: during review Adam or the article context establishes a Polish preferred term for something that also has an English source-language label
+- Preferred action:
+  - once the Polish form is chosen, keep using it consistently in article prose
+  - keep the English form only as an explanatory gloss, source-language marker, or first-mention helper when useful
+  - do not drift back to the English form later as if it were a neutral synonym
+- Example:
+  - preferred: `[[Wielka Stopa (kryptozoologia)|Wielka Stopa]] ({{ang.|Bigfoot}})` on first mention, then `Wielka Stopa` later
+  - avoid: mixing `Wielka Stopa` and `Bigfoot` interchangeably in later Polish prose
+- Notes: if the article itself marks a term with `{{ang.|...}}`, treat that as evidence that the English form is source-language annotation, not the default Polish running term
 
 ### Cite language consistently for foreign-language sources
 - Pattern: some foreign-language references display `(ang.)` while others do not because `język=` is present only on some citations
