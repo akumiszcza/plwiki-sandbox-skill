@@ -182,6 +182,30 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - guessed: `{{Infobox oprogramowanie ...}}`
   - verified: `{{Oprogramowanie infobox ...}}`
 
+### Film infobox strictness on plwiki
+- Verified template: `{{Film infobox}}`
+- Preferred action:
+  - use the real template name `Film infobox`, not guessed variants like `Infobox film`
+  - keep only high-confidence fields already known to render cleanly
+  - if preview reports `Nieznane pola`, remove the unsupported field instead of forcing it into the infobox
+- Known safe fields from the `Capturing Bigfoot` pass:
+  - `tytuł`
+  - `grafika`
+  - `opis grafiki`
+  - `gatunek`
+  - `rok produkcji`
+  - `data premiery`
+  - `kraj produkcji`
+  - `język`
+  - `czas trwania`
+  - `reżyseria`
+  - `muzyka`
+  - `zdjęcia`
+  - `produkcja`
+- Known failure example:
+  - `producenci wykonawczy` -> preview reports `Nieznane pola`
+- Notes: for film articles, recover the infobox only after preview confirms the exact plwiki template name and field set
+
 ### Software infobox field mapping, verified on plwiki
 - Verified template: `{{Oprogramowanie infobox}}`
 - High-confidence mappings:
