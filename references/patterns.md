@@ -128,6 +128,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 
 ## References and citation templates
 
+### Core plwiki citation template references
+- Keep these as the primary template docs to consult when citation preview breaks or parameter names are uncertain:
+  - `Szablon:Cytuj pismo` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_pismo
+  - `Szablon:Cytuj książkę` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_książkę
+  - `Szablon:Cytuj stronę` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_stronę
+  - `Szablon:Cytuj` - https://pl.wikipedia.org/wiki/Szablon:Cytuj
+- When fixing imported enwiki references, prefer aligning fields with these plwiki docs over guessing aliases from enwiki habits.
+
 ### Convert enwiki citation templates to plwiki citation templates
 - Source: `{{Cite web}}`, `{{cite web}}`, `{{cite news}}`, `{{cite magazine}}`
 - Preferred action:
