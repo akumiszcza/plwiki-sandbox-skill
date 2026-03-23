@@ -12,6 +12,7 @@ Convert source wikitext into a Polish Wikipedia-ready draft, not a literal trans
 Memory and continuity:
 
 - Before continuing work on an article or a skill iteration, recall prior decisions, recurring pitfalls, and workflow preferences from memory when available.
+- At the start of work on any plwiki article, first make sure the local skill matches its authoritative repo state; do not begin article work against a stale local skill copy.
 - Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
 
@@ -29,14 +30,20 @@ GitHub-preview flow:
 
 Workspace flow:
 
-- Treat files in the repo root as source imports awaiting conversion.
-- Write the working Polish version into `PL/` under the same filename.
-- Keep the source file untouched during translation and review.
-- When Adam considers the translation done, the source import is moved to `done/` under the same filename for archival/comparison purposes.
+- Treat article files in the repo root as the queue of source imports awaiting translation.
+- The translated Polish working drafts live in `PL/`, normally under the same filename as the root source article.
+- A root-file article should be treated as still pending until its original source file is moved out of the repo root.
+- Finished source originals are archived in `done/` under the same filename; if the original is in `done/`, that article is no longer in the root-queue.
+- Keep the root source file untouched during translation and review unless Adam explicitly asks for restructuring.
 - Do not delete source files yourself unless Adam explicitly asks for it.
 
-1. Read the source `.mediawiki` file fully.
-2. Identify article type, scope, and risky areas:
+Startup checklist for every article:
+
+1. Sync the local `plwiki-sandbox-skill` with its authoritative repo state before doing article work.
+2. Refresh the article repo from `origin/main` before reporting queue state or choosing the next file.
+3. Pick the source article from the repo root, not from `PL/` or `done/`.
+4. Then read the source `.mediawiki` file fully.
+5. Identify article type, scope, and risky areas:
    - infobox/template families
    - citations and short-description/date templates
    - internal links likely needing Polish targets
