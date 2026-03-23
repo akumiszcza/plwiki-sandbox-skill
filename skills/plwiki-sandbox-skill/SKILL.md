@@ -12,6 +12,7 @@ Convert source wikitext into a Polish Wikipedia-ready draft, not a literal trans
 Memory and continuity:
 
 - Before continuing work on an article or a skill iteration, recall prior decisions, recurring pitfalls, and workflow preferences from memory when available.
+- At the start of work on any plwiki article, first make sure the local skill matches its authoritative repo state; do not begin article work against a stale local skill copy.
 - Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
 
@@ -36,8 +37,14 @@ Workspace flow:
 - Keep the root source file untouched during translation and review unless Adam explicitly asks for restructuring.
 - Do not delete source files yourself unless Adam explicitly asks for it.
 
-1. Read the source `.mediawiki` file fully.
-2. Identify article type, scope, and risky areas:
+Startup checklist for every article:
+
+1. Sync the local `plwiki-sandbox-skill` with its authoritative repo state before doing article work.
+2. Refresh the article repo from `origin/main` before reporting queue state or choosing the next file.
+3. If Adam may have edited the draft in the visual editor or directly on GitHub, refresh the article repo from `origin/main` again before every new cleanup pass, not only at article start.
+4. Pick the source article from the repo root, not from `PL/` or `done/`.
+5. Then read the source `.mediawiki` file fully.
+6. Identify article type, scope, and risky areas:
    - infobox/template families
    - citations and short-description/date templates
    - internal links likely needing Polish targets
@@ -75,6 +82,9 @@ Before presenting a converted draft, verify:
 Hard stop:
 - Do not call a pass "done", "polished", or even "micro-pass complete" until ref placement has been checked article-wide.
 - If any refs still sit after the period/comma in normal prose, that is a real mistake, not acceptable polish debt.
+- Do not use broad/global regex replacement on `<ref>` punctuation placement. Syntax-blind moves can corrupt references into broken forms like `</ref> name="..."/>`, `<ref. name="..."/>`, or strip the sentence-ending period entirely.
+- When fixing ref placement, operate on the current file content and use targeted, syntax-aware edits; then re-check both sides of the sentence boundary: `...<ref/>.` not `....<ref/>` and not `...<ref/> Następne zdanie`.
+- Do not replace `<references>...</references>` with `{{Przypisy}}` unless all named-ref definitions have already been inlined or otherwise preserved. A removal pass can create dozens of orphaned named refs at once.
 
 ## Template and link handling
 

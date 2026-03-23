@@ -128,6 +128,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 
 ## References and citation templates
 
+### Core plwiki citation template references
+- Keep these as the primary template docs to consult when citation preview breaks or parameter names are uncertain:
+  - `Szablon:Cytuj pismo` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_pismo
+  - `Szablon:Cytuj książkę` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_książkę
+  - `Szablon:Cytuj stronę` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_stronę
+  - `Szablon:Cytuj` - https://pl.wikipedia.org/wiki/Szablon:Cytuj
+- When fixing imported enwiki references, prefer aligning fields with these plwiki docs over guessing aliases from enwiki habits.
+
 ### Convert enwiki citation templates to plwiki citation templates
 - Source: `{{Cite web}}`, `{{cite web}}`, `{{cite news}}`, `{{cite magazine}}`
 - Preferred action:
@@ -156,6 +164,26 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: use `RRRR-MM-DD` whenever full date is known
 - Notes: applies especially to `data`, `data dostępu`, `zarchiwizowano`
 
+### Pull again after visual-editor changes
+- Pattern: Adam edits the article in the visual editor or directly on GitHub during an ongoing cleanup session
+- Preferred action: refresh the article repo from `origin/main` again before the next pass, even if it was already synced earlier in the session
+- Notes: do not keep patching against stale local content; visual-editor changes can silently invalidate line-based fixes
+
+### Raw/broken ref opener cleanup
+- Pattern: malformed raw refs such as `<ref.>`, `<ref,>`, `<ref >`, `<ref. name="..."/>`, `<ref, name="..."/>`
+- Preferred action: normalize them immediately to valid `<ref>` / `<ref name="..."/>` syntax before doing any other cleanup around citations
+- Notes: these often appear after visual-editor/manual edits or after unsafe automated punctuation passes
+
+### Refs before punctuation, but keep the final period
+- Pattern: a sentence-ending citation should sit before punctuation on plwiki
+- Preferred action: use `...tekst<ref .../>.` or `...tekst<ref>...</ref>.`
+- Notes: fixing `.<ref` is only half the job; verify that the sentence still ends with a literal period after the ref when the prose requires one
+
+### Preserve named-ref definitions when replacing reflists
+- Pattern: article has `<references>...</references>` containing named ref definitions used in body text
+- Preferred action: do not replace the block with bare `{{Przypisy}}` unless those definitions are preserved elsewhere; if needed, rebuild a minimal `<references>` block containing only actually-used named definitions
+- Notes: otherwise preview will flood with `zdefiniowany w <references>, nie był użyty` or missing-definition errors after subsequent edits
+
 ### Remove unsupported enwiki-only citation params
 - Pattern: params like `url-status=live`
 - Preferred action: remove unless there is a confirmed plwiki equivalent in active use
@@ -175,12 +203,43 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `[[Claude (language model)|Claude]]` -> `[[Claude (model językowy)|Claude]]`
   - `[[large language model]]` -> `[[Duży model językowy]]`
 
+### Mark foreign-language forms with plwiki language templates
+- Pattern: article needs to show a foreign-language term, script form, or original wording inline
+- Preferred action: prefer plwiki-style markup such as `{{ang.|...}}`, `{{W języku|kod|tekst}}`, or language-specific shortcuts like `{{chiń.|...}}` instead of raw labels like `po chińsku:`
+- Example:
+  - plain draft: `fuji (po chińsku: 扶乩/扶箕)`
+  - better plwiki draft: `fuji ({{chiń.|扶乩}}, także {{chiń.|扶箕}})`
+
 ### Prefer real plwiki infobox template names
 - Pattern: translated or guessed infobox names such as `Infobox oprogramowanie`
 - Preferred action: replace with the actual plwiki template name after verification
 - Example:
   - guessed: `{{Infobox oprogramowanie ...}}`
   - verified: `{{Oprogramowanie infobox ...}}`
+
+### Film infobox strictness on plwiki
+- Verified template: `{{Film infobox}}`
+- Preferred action:
+  - use the real template name `Film infobox`, not guessed variants like `Infobox film`
+  - keep only high-confidence fields already known to render cleanly
+  - if preview reports `Nieznane pola`, remove the unsupported field instead of forcing it into the infobox
+- Known safe fields from the `Capturing Bigfoot` pass:
+  - `tytuł`
+  - `grafika`
+  - `opis grafiki`
+  - `gatunek`
+  - `rok produkcji`
+  - `data premiery`
+  - `kraj produkcji`
+  - `język`
+  - `czas trwania`
+  - `reżyseria`
+  - `muzyka`
+  - `zdjęcia`
+  - `produkcja`
+- Known failure example:
+  - `producenci wykonawczy` -> preview reports `Nieznane pola`
+- Notes: for film articles, recover the infobox only after preview confirms the exact plwiki template name and field set
 
 ### Software infobox field mapping, verified on plwiki
 - Verified template: `{{Oprogramowanie infobox}}`
@@ -218,6 +277,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 ### `Cytuj pismo` uses `czasopismo`, not `praca`
 - Pattern: enwiki `cite news` / `cite magazine` converted to `{{Cytuj pismo}}`
 - Preferred action: map publication title to `|czasopismo=`
+
+### Footnotes usually go before closing punctuation
+- Pattern: after translation or cleanup, inline refs drift to the wrong side of a period/comma
+- Preferred action: in normal prose, place the `<ref>...</ref>` or `<ref name="..." />` before the closing punctuation of the supported sentence or clause
+- Notes: treat this as a preview-time quality check, not just final polish; re-check after larger rewrites because ref positions drift easily
 - Do not use: `|praca=` inside `{{Cytuj pismo}}`
 - Example:
   - in: `{{cite news |work=The Verge |title=...}}`
@@ -235,6 +299,8 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - treat this as a final proofreading pass item for every article
   - treat this as a high-priority preview check, not optional polish
   - after larger cleanup passes, re-check the whole article because automated rewrites can easily push refs back to the wrong side of punctuation
+  - if a user already corrected this once, treat any repeat as a process failure and update the draft before calling the pass complete
+  - do not rely on memory alone; consciously scan the article for `.<ref` and `,<ref` patterns before push or handoff
 
 ### Safer external-link fallback for broken sister-project templates
 - Pattern: interwiki/sister-project template renders badly or points to a dead target
@@ -254,6 +320,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: split into two shorter Polish sentences when readability improves
 - Example: describe the incident first, then explain the consent issue in a second sentence
 
+### Lock preferred Polish terminology once chosen
+- Pattern: during review Adam or the article context establishes a Polish preferred term for something that also has an English source-language label
+- Preferred action:
+  - once the Polish form is chosen, keep using it consistently in article prose
+  - keep the English form only as an explanatory gloss, source-language marker, or first-mention helper when useful
+  - do not drift back to the English form later as if it were a neutral synonym
+- Example:
+  - preferred: `[[Wielka Stopa (kryptozoologia)|Wielka Stopa]] ({{ang.|Bigfoot}})` on first mention, then `Wielka Stopa` later
+  - avoid: mixing `Wielka Stopa` and `Bigfoot` interchangeably in later Polish prose
+- Notes: if the article itself marks a term with `{{ang.|...}}`, treat that as evidence that the English form is source-language annotation, not the default Polish running term
 
 ### Cite language consistently for foreign-language sources
 - Pattern: some foreign-language references display `(ang.)` while others do not because `język=` is present only on some citations
