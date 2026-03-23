@@ -179,6 +179,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: use `...tekst<ref .../>.` or `...tekst<ref>...</ref>.`
 - Notes: fixing `.<ref` is only half the job; verify that the sentence still ends with a literal period after the ref when the prose requires one
 
+### Remove red author links inside references
+- Pattern: author names inside citation/ref entries render as red links or add noisy low-value linking
+- Preferred action: in references, prefer plain-text author names over redlinked author wikilinks
+- Notes: keep links in refs only when they are clearly useful and high-confidence; in most citation author fields, plain text is cleaner than red author links
+
 ### Preserve named-ref definitions when replacing reflists
 - Pattern: article has `<references>...</references>` containing named ref definitions used in body text
 - Preferred action: do not replace the block with bare `{{Przypisy}}` unless those definitions are preserved elsewhere; if needed, rebuild a minimal `<references>` block containing only actually-used named definitions
