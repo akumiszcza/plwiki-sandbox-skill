@@ -175,6 +175,13 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `[[Claude (language model)|Claude]]` -> `[[Claude (model językowy)|Claude]]`
   - `[[large language model]]` -> `[[Duży model językowy]]`
 
+### Mark foreign-language forms with plwiki language templates
+- Pattern: article needs to show a foreign-language term, script form, or original wording inline
+- Preferred action: prefer plwiki-style markup such as `{{ang.|...}}`, `{{W języku|kod|tekst}}`, or language-specific shortcuts like `{{chiń.|...}}` instead of raw labels like `po chińsku:`
+- Example:
+  - plain draft: `fuji (po chińsku: 扶乩/扶箕)`
+  - better plwiki draft: `fuji ({{chiń.|扶乩}}, także {{chiń.|扶箕}})`
+
 ### Prefer real plwiki infobox template names
 - Pattern: translated or guessed infobox names such as `Infobox oprogramowanie`
 - Preferred action: replace with the actual plwiki template name after verification
