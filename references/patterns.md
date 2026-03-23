@@ -164,6 +164,26 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: use `RRRR-MM-DD` whenever full date is known
 - Notes: applies especially to `data`, `data dostępu`, `zarchiwizowano`
 
+### Pull again after visual-editor changes
+- Pattern: Adam edits the article in the visual editor or directly on GitHub during an ongoing cleanup session
+- Preferred action: refresh the article repo from `origin/main` again before the next pass, even if it was already synced earlier in the session
+- Notes: do not keep patching against stale local content; visual-editor changes can silently invalidate line-based fixes
+
+### Raw/broken ref opener cleanup
+- Pattern: malformed raw refs such as `<ref.>`, `<ref,>`, `<ref >`, `<ref. name="..."/>`, `<ref, name="..."/>`
+- Preferred action: normalize them immediately to valid `<ref>` / `<ref name="..."/>` syntax before doing any other cleanup around citations
+- Notes: these often appear after visual-editor/manual edits or after unsafe automated punctuation passes
+
+### Refs before punctuation, but keep the final period
+- Pattern: a sentence-ending citation should sit before punctuation on plwiki
+- Preferred action: use `...tekst<ref .../>.` or `...tekst<ref>...</ref>.`
+- Notes: fixing `.<ref` is only half the job; verify that the sentence still ends with a literal period after the ref when the prose requires one
+
+### Preserve named-ref definitions when replacing reflists
+- Pattern: article has `<references>...</references>` containing named ref definitions used in body text
+- Preferred action: do not replace the block with bare `{{Przypisy}}` unless those definitions are preserved elsewhere; if needed, rebuild a minimal `<references>` block containing only actually-used named definitions
+- Notes: otherwise preview will flood with `zdefiniowany w <references>, nie był użyty` or missing-definition errors after subsequent edits
+
 ### Remove unsupported enwiki-only citation params
 - Pattern: params like `url-status=live`
 - Preferred action: remove unless there is a confirmed plwiki equivalent in active use
