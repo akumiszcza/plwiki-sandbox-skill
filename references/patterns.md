@@ -391,6 +391,37 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - prefer `skille przechowywane w lokalnej przestrzeni roboczej`
 
 
+### Remove or replace unsupported enwiki citation params (expanded list)
+- Pattern: params that plwiki `Cytuj pismo` / `Cytuj książkę` / `Cytuj stronę` do not support
+- **Always remove when importing from enwiki:**
+  - `tom` (volume) — `Cytuj pismo` does not have a volume field; omit it
+  - `hdl` (Handle identifier) — unknown in all three plwiki cite templates
+  - `artykuł` — enwiki alias for article-number, not accepted on plwiki
+  - `redaktor` (without number suffix) — use `redaktor1=` or omit
+  - `url rozdziału` — not a valid param in `Cytuj książkę`; either omit or move the URL to `url=`
+  - `url-status` — enwiki-only param, remove silently
+- **Safe equivalents or workarounds:**
+  - For `url rozdziału` in `Cytuj książkę`: either omit the chapter URL or move it to `url=` if needed
+  - For `artykuł`: the article/chapter identifier can usually be kept as `id=CDXXXXXX` or omitted
+- Notes: when preview reports "Nieznane pola", consult this list first before guessing
+
+### Infoboks leków na plwiki — szablon „Infobox drug" nie istnieje
+- Pattern: enwiki uses `{{Infobox drug}}` for pharmaceutical/vaccine articles
+- Preferred action: do NOT use `{{Infobox drug}}` on plwiki — it renders as a red broken template
+- Verified plwiki alternative: `{{Lek}}` or `{{Leki infobox}}` — check current plwiki docs before use
+- Safe fallback when unsure: omit the infobox entirely in the draft and add a TODO comment, rather than using a broken red template
+- Notes: this applies to vaccine articles and any drug/pharmaceutical article imported from enwiki
+
+### Szablony nawigacyjne — `{{Szczepionki}}` nie istnieje na plwiki
+- Pattern: enwiki uses `{{Vaccines}}` navbox; automatic translation to `{{Szczepionki}}` produces a red template
+- Preferred action: check whether a plwiki navigation template for vaccines exists before using it; if uncertain, omit and add a TODO comment
+- Notes: do not guess Polish navbox names from English equivalents — always verify first
+
+### Mapy / grafiki w szablonie thumb — upright zbyt duże
+- Pattern: an SVG map with `upright=1.9` or larger renders as an oversized image that dominates the preview, especially for complex map graphics
+- Preferred action: reduce `upright` value (e.g. to `upright=1.2` or `upright=1.3`) or use `width=` in pixels to control the displayed size
+- Notes: very wide SVG maps often need explicit size control; prefer smaller values initially and let Adam adjust
+
 ## Iterative preview workflow
 
 ### Large-article preview cycle
