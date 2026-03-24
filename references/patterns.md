@@ -184,6 +184,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: in references, prefer plain-text author names over redlinked author wikilinks
 - Notes: keep links in refs only when they are clearly useful and high-confidence; in most citation author fields, plain text is cleaner than red author links
 
+### Remove stray trailing punctuation from reference definitions
+- Pattern: a reference definition inside `== Przypisy ==` ends with an extra literal period outside the citation template/content, e.g. `<ref name="Pessoa">{{Cytuj książkę|...}}.</ref>`
+- Preferred action: remove the stray punctuation from inside the ref definition unless it is truly part of quoted source text
+- Notes: this kind of extra period is easy to miss in source but produces inconsistent reference formatting
+
+### Prefer normalized title/plain-text forms in references over raw identifier-like wikilinks
+- Pattern: a cited work title appears as a raw or machine-like wikilink that is likely to render red or unnatural on plwiki, e.g. underscore-separated forms such as `[[Maggid_Mesharim]]`
+- Preferred action: prefer a normal readable title in plain text (or a verified plwiki target if one clearly exists) instead of keeping the raw identifier-shaped wikilink
+- Notes: titles copied from URLs, database ids, or underscore forms should be treated with suspicion during citation cleanup
+
 ### Preserve named-ref definitions when replacing reflists
 - Pattern: article has `<references>...</references>` containing named ref definitions used in body text
 - Preferred action: do not replace the block with bare `{{Przypisy}}` unless those definitions are preserved elsewhere; if needed, rebuild a minimal `<references>` block containing only actually-used named definitions
