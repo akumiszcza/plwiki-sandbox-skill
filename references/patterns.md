@@ -417,6 +417,21 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: check whether a plwiki navigation template for vaccines exists before using it; if uncertain, omit and add a TODO comment
 - Notes: do not guess Polish navbox names from English equivalents — always verify first
 
+### Poprawna składnia obrazków na plwiki — kolejność parametrów
+- Source: `Pomoc:Ilustrowanie` na plwiki
+- Preferred action: użyj kolejności `right|thumb` (lub `left|thumb`), NIE `miniatura|prawo`
+- Canonical form: `[[Plik:nazwa.jpg|right|thumb|Opis podpisu]]`
+- Aliases `miniatura` i `prawo` są technicznie akceptowane przez parser, ale powodują problemy z rozpoznawaniem capta i renderowaniem podpisu; angielskie `right|thumb` jest bezpieczniejsze
+- Do NOT use: `miniatura|prawo|opis` — opis może nie być renderowany jako podpis
+- Use: `right|thumb|opis` — opis zawsze widoczny jako podpis pod miniaturką
+
+### `{{Legenda}}` w podpisach map — użycie wewnątrz capta
+- Szablon `{{Legenda|kolor|tekst}}` istnieje na plwiki i działa
+- Poprawne użycie: wewnątrz capta znacznika `[[Plik:...|right|thumb|tekst intro\n{{Legenda|...}}\n{{Legenda|...}}]]`
+- Błąd poprzedni: stosowanie `miniatura|prawo` powodowało że cały caption nie był rozpoznawany — stąd legenda „wypadała" z obrazka
+- Po naprawieniu kolejności na `right|thumb` szablony `{{Legenda}}` w capcie działają poprawnie
+- Nie umieszczaj `{{Legenda}}` poza znacznikiem `[[Plik:...]]` jeśli chcesz legendę widoczną jako część podpisu obrazka
+
 ### Mapy / grafiki w szablonie thumb — upright zbyt duże
 - Pattern: an SVG map with `upright=1.9` or larger renders as an oversized image that dominates the preview, especially for complex map graphics
 - Preferred action: reduce `upright` value (e.g. to `upright=1.2` or `upright=1.3`) or use `width=` in pixels to control the displayed size
