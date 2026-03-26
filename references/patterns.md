@@ -432,6 +432,15 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Po naprawieniu kolejności na `right|thumb` szablony `{{Legenda}}` w capcie działają poprawnie
 - Nie umieszczaj `{{Legenda}}` poza znacznikiem `[[Plik:...]]` jeśli chcesz legendę widoczną jako część podpisu obrazka
 
+### Archiwa przypisów (`archiwum=` / `zarchiwizowano=`)
+- Dla przypisów z `|url=` bez archiwum można półautomatycznie uzupełniać `|archiwum=` i `|zarchiwizowano=` przez Wayback Machine API: `https://archive.org/wayback/available?url=...`
+- W tym środowisku preferuj prosty skrypt Python do odpytania Wayback API; bashowe tablice/expansje mogą zostać zablokowane jako obfuscation
+- Jeśli snapshot istnieje, wpisz prawdziwy adres Wayback w formie `https://web.archive.org/web/YYYYMMDDHHMMSS/original-url`
+- `zarchiwizowano=` ustawiaj jako `YYYY-MM-DD` wyciągnięte z timestampa Wayback
+- Nie wpisuj jako `archiwum=` zwykłego permalinku strony, share URL ani linku z parametrami `?st=...`, `reflink=...`, `fbclid=...` itp. To nie jest archiwum
+- Jeśli w artykule live jest zły `archiwum=` ale poprawka jest drobna, można po prostu odesłać poprawiony ref jako tekst do ręcznej podmiany na wiki, bez zbędnego commita do repo pomocniczego
+- Przy QA przypisów sprawdzaj, czy tytuł źródła faktycznie odpowiada treści artykułu/tabeli; przykład błędu do unikania: dokument WHO o yellow fever użyty jako źródło tabeli o wymogach meningokokowych
+
 ### Mapy / grafiki w szablonie thumb — upright zbyt duże
 - Pattern: an SVG map with `upright=1.9` or larger renders as an oversized image that dominates the preview, especially for complex map graphics
 - Preferred action: reduce `upright` value (e.g. to `upright=1.2` or `upright=1.3`) or use `width=` in pixels to control the displayed size
