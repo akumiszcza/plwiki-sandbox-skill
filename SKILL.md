@@ -15,6 +15,11 @@ Memory and continuity:
 - At the start of work on any plwiki article, first make sure the local skill matches its authoritative repo state; do not begin article work against a stale local skill copy.
 - Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
+- Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
+- `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
+- When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
+- Adam may append new discoveries to `Linki.md`; read and respect them in future sessions.
+- Keep a local copy of `Linki.md` in sync with the authoritative skill repo copy.
 
 GitHub-preview flow:
 
