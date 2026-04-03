@@ -13,12 +13,21 @@ Memory and continuity:
 
 - Before continuing work on an article or a skill iteration, recall prior decisions, recurring pitfalls, and workflow preferences from memory when available.
 - At the start of work on any plwiki article, first make sure the local skill matches its authoritative repo state; do not begin article work against a stale local skill copy.
+- Also refresh the local article repo clone at `/home/ubuntu/.openclaw/plwiki-sandbox` with `git pull --ff-only` before every translation/cleanup/archive pass, not just once per session.
 - Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
+- Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
+- `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
+- Read `Linki.md` from the article repo (`/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`) before article work and propagate reusable additions into the skill copy so both stay aligned.
+- When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
+- Adam may append new discoveries to `Linki.md`; read and respect them in future sessions.
+- Keep a local copy of `Linki.md` in sync with the authoritative skill repo copy.
 
 GitHub-preview flow:
 
 - If the human uses GitHub state to generate preview, commit and push after each meaningful pass instead of stopping on local-only changes.
+- In this setup, the authoritative article repo is `https://github.com/akumiszcza/plwiki-sandbox` with local clone at `/home/ubuntu/.openclaw/plwiki-sandbox`; treat that clone as the default working copy for plwiki article files.
+- After article-side work, commit and push the article repo promptly because work may continue from multiple machines.
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
@@ -40,11 +49,12 @@ Workspace flow:
 Startup checklist for every article:
 
 1. Sync the local `plwiki-sandbox-skill` with its authoritative repo state before doing article work.
-2. Refresh the article repo from `origin/main` before reporting queue state or choosing the next file.
-3. If Adam may have edited the draft in the visual editor or directly on GitHub, refresh the article repo from `origin/main` again before every new cleanup pass, not only at article start.
-4. Pick the source article from the repo root, not from `PL/` or `done/`.
-5. Then read the source `.mediawiki` file fully.
-6. Identify article type, scope, and risky areas:
+2. Refresh the article repo from `origin/main` in `/home/ubuntu/.openclaw/plwiki-sandbox` before reporting queue state, choosing the next file, or doing any translation-related pass.
+3. Read the article repo `Linki.md` and fold any reusable additions back into the skill copy when needed.
+4. If Adam may have edited the draft in the visual editor or directly on GitHub, refresh the article repo from `origin/main` again before every new cleanup pass, not only at article start.
+5. Pick the source article from the repo root, not from `PL/` or `done/`.
+6. Then read the source `.mediawiki` file fully.
+7. Identify article type, scope, and risky areas:
    - infobox/template families
    - citations and short-description/date templates
    - internal links likely needing Polish targets
@@ -85,6 +95,7 @@ Hard stop:
 - Do not use broad/global regex replacement on `<ref>` punctuation placement. Syntax-blind moves can corrupt references into broken forms like `</ref> name="..."/>`, `<ref. name="..."/>`, or strip the sentence-ending period entirely.
 - When fixing ref placement, operate on the current file content and use targeted, syntax-aware edits; then re-check both sides of the sentence boundary: `...<ref/>.` not `....<ref/>` and not `...<ref/> Następne zdanie`.
 - Do not replace `<references>...</references>` with `{{Przypisy}}` unless all named-ref definitions have already been inlined or otherwise preserved. A removal pass can create dozens of orphaned named refs at once.
+- Before calling any preview-fix pass complete, run `scripts/check_ref_punctuation.py <article-file>` from this skill and fix every reported `LEAKED_CITE`, `EMPTY_NAMED_REF`, and `MISSING_PERIOD_AFTER_REF` in normal prose.
 
 ## Template and link handling
 

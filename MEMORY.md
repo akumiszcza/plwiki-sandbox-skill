@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-_Last updated: 2026-04-01_
+_Last updated: 2026-04-02_
 
 ---
 
@@ -22,10 +22,17 @@ _Last updated: 2026-04-01_
 
 ## 📌 Key Decisions
 - For Obsidian travel notes and related calendar updates, BIGAI is the canonical GitHub destination unless Adam explicitly says otherwise.
+- For BIGAI/Obsidian work, prefer operating on the full local repo clone at `/home/ubuntu/.openclaw/BIGAI` and search across the whole vault instead of fetching or editing isolated single files when local access is sufficient.\n- Before making BIGAI changes, fetch or pull first so work starts from current remote state.
+- After making changes in the local BIGAI clone that Adam should see on his side, commit and push them promptly, because Adam does not have practical access to this host's local BIGAI copy.
+- Preferred BIGAI rename workflow: fetch/pull first, use `notesmd-cli move` for the rename so wikilinks update, then verify title, H1, and ordinary plain-text mentions the CLI would not rewrite, then `git add -A` so staged changes also include deletion of the old file, then commit and push if Adam needs to see the change remotely.
+- For BIGAI vault operations, use `notesmd-cli` rather than the older unrelated `obsidian-cli` package exposed in this environment.
+- Local BIGAI path, `notesmd-cli` usage, fetch/pull-first discipline, rename verification, `git add -A`, and git-sync expectations should be reflected not only in memory but also in the Obsidian skill repos when those skills are edited.
 - For travel parsing, do not use booking/reservation numbers as flight `ref` unless the document explicitly confirms they are actual carrier or ticket references.
 - For family/personal scheduling, prefer the shared calendar `hp0gd751p5t7kf1uh2ub76ehv4@group.calendar.google.com` rather than the connected account's primary calendar.
 - For future GitHub access across used repos, prefer `GITHUB_NEW_TOKEN`; never store token values in notes or durable memory.
+- For plwiki article work, the canonical article repo is `akumiszcza/plwiki-sandbox`, with local clone at `/home/ubuntu/.openclaw/plwiki-sandbox`; before every translation/cleanup/archive pass, pull there first, and after each meaningful change commit and push promptly because work continues from multiple machines.
 - For future Git commits, use `git user.name` = Sarah and `git user.email` = sarah@openclaw.local.
+- When I add durable memory/skill learnings Adam wants to survive `/new`, also commit and push the workspace repo so the update persists across resets.
 
 ## 💡 Lessons Learned
 - Tailscale Funnel had to be enabled in the tailnet UI for Gmail ingestion to work.
@@ -39,10 +46,12 @@ _Last updated: 2026-04-01_
 
 ## 🔧 Environment
 - Two important directories: `/home/ubuntu/.openclaw/workspace` and `/home/ubuntu/.openclaw/travel-files`.
-- There is no confirmed persistent local clone of `akumiszcza/BIGAI` at a fixed path on this host.
+- Local persistent clone of `akumiszcza/BIGAI` is available at `/home/ubuntu/.openclaw/BIGAI` and should be the default local working copy for Obsidian/BIGAI tasks unless Adam says otherwise.
+- The npm package currently exposed as `obsidian-cli` in this environment is an unrelated Obsidian QA CLI. For vault management here, use Yakitrak `notesmd-cli` instead. It is built locally and should be preferred for search/create/move/delete/frontmatter operations in BIGAI.
 - Direct BIGAI access from this host is confirmed via HTTPS + environment token, not SSH.
 - Plain unauthenticated `git clone https://github.com/akumiszcza/BIGAI` may fail with `could not read Username`; use environment-backed HTTPS token workflow.
 - If `myclaw.ai` dashboard env editing/import is flaky, adding variables directly in `openclaw.json` may work better.
+- On this myclaw/VPS deployment, `openclaw gateway restart` from CLI is not the correct restart path because the gateway is dashboard/supervisor-managed and the CLI reports service-disabled/systemd-unavailable. For effective restarts here, use the dashboard restart flow instead.
 - Local calendar quick-reference file: `/home/ubuntu/.openclaw/workspace/local-calendar.md`.
 
 ## ⚡ Procedures & Preferences
@@ -68,4 +77,7 @@ _Last updated: 2026-04-01_
 ## 📚 Source Notes
 - FORMATS.md remains the authoritative source for detailed travel formatting rules.
 - TickTick API skill local path: `/home/ubuntu/.openclaw/workspace/skills/ticktick-api`, repo: `akumiszcza/ticktick-api-skill`.
+- For future TickTick skill updates, treat `akumiszcza/ticktick-api-skill` as the canonical GitHub destination and commit/push there, not via the workspace repo, unless Adam explicitly says otherwise.
+- TickTick skill is not just set up: real usage in Adam's account confirmed inbox review, newest-task listing, quick-add capture, deletion of test tasks, and duplicate-cleanup flows. For inbox maintenance, prefer `project-data inbox125791771` plus client-side sorting/filtering over relying on `filter-tasks` alone.
 - `akumiszcza/obsidian-concerts-skill` is private and should not be published to ClawHub unless Adam explicitly changes that decision.
+- Plwiki helper references now also explicitly include `Szablon:Biblia` for Bible passages and `Szablon:Odn` for shortened citations; when Adam extends `plwiki-sandbox/Linki.md`, those additions should be read and propagated into the reusable plwiki skill notes.
