@@ -12,6 +12,7 @@
 - https://pl.wikipedia.org/wiki/Szablon:Cytuj_pismo
 - https://pl.wikipedia.org/wiki/Szablon:Cytuj_ksi%C4%85%C5%BCk%C4%99
 - https://pl.wikipedia.org/wiki/Szablon:Cytuj_stron%C4%99
+- https://pl.wikipedia.org/wiki/Szablon:Link-interwiki - do czytelnego linkowania odpowiedników w innych wiki/projektach, gdy zwykły link wewnętrzny nie wystarcza.
 - https://pl.wikipedia.org/wiki/Wikipedia:Weryfikowalno%C5%9B%C4%87
 - https://pl.wikipedia.org/wiki/Wikipedia:Bibliografia
 - https://pl.wikipedia.org/wiki/Pomoc:Przypisy
