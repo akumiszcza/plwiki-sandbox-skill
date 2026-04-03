@@ -19,6 +19,8 @@ Memory and continuity:
 - Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
 - `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
 - Read `Linki.md` from the article repo (`/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`) before article work and propagate reusable additions into the skill copy so both stay aligned.
+- For current/future plwiki work, treat native Cite sub-referencing (`<ref name="..." details="..." />`) as the preferred replacement path for simple `{{Odn}}` + one-item bibliography setups when the target wiki supports it.
+- When converting from `{{Odn}}`, define the full source only once in `<references>`, use `<ref name="ŹródłoRok" />` for unspecific reuse, and use `<ref name="ŹródłoRok" details="s. ..." />` for page-specific reuse; do not create a second full definition of the same named ref in article text.
 - When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
 - Adam may append new discoveries to `Linki.md`; read and respect them in future sessions.
 - Keep a local copy of `Linki.md` in sync with the authoritative skill repo copy.
