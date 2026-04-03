@@ -13,6 +13,7 @@ _Last updated: 2026-04-02_
 - Prefer replies short but not formal.
 - For normal text chat, reply in the same language Adam is using.
 - For voice/audio interactions, use Polish TTS by default; preferred Microsoft voice: `pl-PL-ZofiaNeural`.
+- Adam's preferred direct email address for reports/links is `akumiszcza@gmail.com`.
 
 ## 🏗️ Projects
 - Auto-Dream is now configured in this workspace with daily consolidation at 04:00 Europe/Warsaw.
