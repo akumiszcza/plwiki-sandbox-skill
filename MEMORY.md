@@ -20,6 +20,7 @@ _Last updated: 2026-04-02_
 - Telegram added as a primary chat surface via bot `@Sarah_MyClaw_bot`; pairing enabled for Adam.
 - Gmail ingestion for `u6133809438@gmail.com` was set up via OpenClaw Gmail Pub/Sub hook + gogcli + gcloud + Tailscale Funnel.
 - Ecuador & Galapagos 2026 planning: Warsaw airport hotel is set to Hampton by Hilton Warsaw Airport, and long-trip parking is arranged with Start Parking.
+- plwiki `Marry-your-rapist law` article work was finished in `akumiszcza/plwiki-sandbox`; the active file was `PL/Marry-your-rapist law.mediawiki`, archive coverage was substantially expanded, and the article-repo `Linki.md` plus skill copy were updated with durable workflow notes including Cite sub-referencing and `Szablon:Link-interwiki`.
 
 ## 📌 Key Decisions
 - For Obsidian travel notes and related calendar updates, BIGAI is the canonical GitHub destination unless Adam explicitly says otherwise.
