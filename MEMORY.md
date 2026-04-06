@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-_Last updated: 2026-04-02_
+_Last updated: 2026-04-04_
 
 ---
 
@@ -24,6 +24,8 @@ _Last updated: 2026-04-02_
 
 ## 📌 Key Decisions
 - For Obsidian travel notes and related calendar updates, BIGAI is the canonical GitHub destination unless Adam explicitly says otherwise.
+- Critical BIGAI rule: when I edit BIGAI content Adam is expected to see, I must not stop at local file edits. I should finish the loop: pull first, make the change, `git add -A`, commit, and push the BIGAI repo unless Adam explicitly asks for local-only changes.
+- Adam does not have practical access to this host's local BIGAI copy, so local-only completion is a recurring failure mode and should be treated as incomplete work, not "done".
 - For BIGAI/Obsidian work, prefer operating on the full local repo clone at `/home/ubuntu/.openclaw/BIGAI` and search across the whole vault instead of fetching or editing isolated single files when local access is sufficient.\n- Before making BIGAI changes, fetch or pull first so work starts from current remote state.
 - After making changes in the local BIGAI clone that Adam should see on his side, commit and push them promptly, because Adam does not have practical access to this host's local BIGAI copy.
 - Preferred BIGAI rename workflow: fetch/pull first, use `notesmd-cli move` for the rename so wikilinks update, then verify title, H1, and ordinary plain-text mentions the CLI would not rewrite, then `git add -A` so staged changes also include deletion of the old file, then commit and push if Adam needs to see the change remotely.
@@ -31,10 +33,14 @@ _Last updated: 2026-04-02_
 - Local BIGAI path, `notesmd-cli` usage, fetch/pull-first discipline, rename verification, `git add -A`, and git-sync expectations should be reflected not only in memory but also in the Obsidian skill repos when those skills are edited.
 - For travel parsing, do not use booking/reservation numbers as flight `ref` unless the document explicitly confirms they are actual carrier or ticket references.
 - For family/personal scheduling, prefer the shared calendar `hp0gd751p5t7kf1uh2ub76ehv4@group.calendar.google.com` rather than the connected account's primary calendar.
+- When Adam says to add, check, or ask about something "w kalendarzu", treat that as Google Calendar by default, not only the local reference file; optionally mirror important travel/concert items into `local-calendar.md` as a local cache.
+- For ordinary calendar additions/updates Adam requests in chat, do not ask for extra confirmation before writing to the preferred Google Calendar unless the action is unusual, ambiguous, or materially risky.
 - For future GitHub access across used repos, prefer `GITHUB_NEW_TOKEN`; never store token values in notes or durable memory.
 - For plwiki article work, the canonical article repo is `akumiszcza/plwiki-sandbox`, with local clone at `/home/ubuntu/.openclaw/plwiki-sandbox`; before every translation/cleanup/archive pass, pull there first, and after each meaningful change commit and push promptly because work continues from multiple machines.
+- For plwiki work, treat `Linki.md` as the practical source notebook for wiki-specific references and editing docs; do not use `Brudnopis.md` as the reference source for MediaWiki/plwiki article workflow.
 - For future Git commits, use `git user.name` = Sarah and `git user.email` = sarah@openclaw.local.
 - When I add durable memory/skill learnings Adam wants to survive `/new`, also commit and push the workspace repo so the update persists across resets.
+- If the effective default model drifts after an update or restart, the practical SOP is: run `openclaw models`, then `openclaw config set agents.defaults.model.primary "openai-codex/gpt-5.4"`, then verify with `openclaw models` again; the command's short micro-reload is usually enough, so a full dashboard restart is not part of the normal fix path.
 
 ## 💡 Lessons Learned
 - Tailscale Funnel had to be enabled in the tailnet UI for Gmail ingestion to work.
@@ -44,6 +50,8 @@ _Last updated: 2026-04-02_
 - Gateway restarts can stop gmail-watcher if tailscaled or gog are not running; restart tailscaled and run `openclaw webhooks gmail run`.
 - Working Gmail body retrieval path in this environment: use `gog gmail messages search "<query>" --include-body --json --results-only` (and `--account u6133809438@gmail.com` when needed). Prefer this for forwarded booking emails when plain message search is not enough.
 - In plwiki, footnote placement is a hard-stop QA item: refs should normally appear before closing punctuation, and article-wide ref placement should be explicitly checked before finishing a pass.
+- First ACP Codex pass on plwiki translation underperformed when left with a generic prompt: it over-compressed the article, mishandled references, and needed local QA. For future ACP plwiki runs, pass the concrete workflow rules explicitly and treat the result as a draft, not a ready article.
+- For plwiki QA, trust live preview/template errors over heuristic local checks; explicitly validate citation-template compatibility against `Linki.md`, preserve more of the source article structure when appropriate, and prune redlinked `Zobacz też` entries before calling a draft finished.
 - New chat sessions do not delete git history; missing history in `travel-files` happened because it was a newer repo than the older workspace git repo.
 
 ## 🔧 Environment
@@ -66,6 +74,7 @@ _Last updated: 2026-04-02_
 - On each relevant forwarded travel email, reply with a short summary and then one formatted canonical line.
 - Maintain travel files in chronological order.
 - For non-classical concert notes in Obsidian/BIGAI, use a richer template with header image, official links, band Wiki links, top TODO section, practical items, event time, support acts, and a clearly marked sample/average setlist section when needed.
+- Before future plwiki/article editing work, read `/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`, use it as the citation/template reference, and sync durable additions from the article repo back into `/home/ubuntu/.openclaw/workspace/skills/plwiki-sandbox-skill/Linki.md`.
 - Do not remove or replace an existing useful concert graphic by default; keep it or add a new image alongside it.
 - For Obsidian plugin tables that sum cancellation-insurance costs, numeric PLN cells must be plain numbers only, with a dot as decimal separator, and without `PLN` / `zł` suffixes; leave cells empty when a currency value is unavailable.
 - BIGAI `Brudnopis.md` is the reference scratchpad for nonstandard Markdown patterns to reuse later. It currently documents hidden comments via `[text]: #`, reference-style links, footnotes `[^1]`, strikethrough, highlight `==text==`, and Markdeep HTML trailer usage.
