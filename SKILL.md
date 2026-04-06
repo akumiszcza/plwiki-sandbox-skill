@@ -23,7 +23,9 @@ Memory and continuity:
 
 GitHub-preview flow:
 
+- This skill lives in its own GitHub repo and should be kept in sync as a first-class workflow repo, not as a workspace backup folder.
 - If the human uses GitHub state to generate preview, commit and push after each meaningful pass instead of stopping on local-only changes.
+- For durable skill updates Adam is expected to rely on later, default to commit + push without asking unless he explicitly requests local-only work.
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
