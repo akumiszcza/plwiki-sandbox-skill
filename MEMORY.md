@@ -37,8 +37,9 @@ _Last updated: 2026-04-04_
 - For BIGAI vault operations, use `notesmd-cli` rather than the older unrelated `obsidian-cli` package exposed in this environment.
 - Local BIGAI path, `notesmd-cli` usage, fetch/pull-first discipline, rename verification, `git add -A`, and git-sync expectations should be reflected not only in memory but also in the Obsidian skill repos when those skills are edited.
 - For travel parsing, do not use booking/reservation numbers as flight `ref` unless the document explicitly confirms they are actual carrier or ticket references.
-- For family/personal scheduling, prefer the shared calendar `hp0gd751p5t7kf1uh2ub76ehv4@group.calendar.google.com` rather than the connected account's primary calendar.
+- For family/personal scheduling, prefer the shared calendar `hp0gd751p5t7kf1uh2ub76ehv4@group.calendar.google.com` rather than the connected account's primary calendar. Its display name is `Kalendarz Patrycji i Adama`.
 - When Adam says to add, check, or ask about something "w kalendarzu", treat that as Google Calendar by default, not only the local reference file; optionally mirror important travel/concert items into `local-calendar.md` as a local cache.
+- For this Google Calendar integration, use account `u6133809438@gmail.com`. If `gog` is missing, install `gogcli` first. For headless/dashboard-only re-auth on the VPS, prefer `gog auth add u6133809438@gmail.com --remote --step=1 --services calendar,gmail`, send Adam the printed Google auth URL, wait for him to return the final localhost callback URL, then complete with `gog auth add u6133809438@gmail.com --remote --step=2 --auth-url '<returned-url>' --services calendar,gmail` before querying calendar data.
 - For ordinary calendar additions/updates Adam requests in chat, do not ask for extra confirmation before writing to the preferred Google Calendar unless the action is unusual, ambiguous, or materially risky.
 - For future GitHub access across used repos, prefer `GITHUB_NEW_TOKEN`; never store token values in notes or durable memory.
 - For plwiki article work, the canonical article repo is `akumiszcza/plwiki-sandbox`, with local clone at `/home/ubuntu/.openclaw/plwiki-sandbox`; before every translation/cleanup/archive pass, pull there first, and after each meaningful change commit and push promptly because work continues from multiple machines.
@@ -98,3 +99,9 @@ _Last updated: 2026-04-04_
 - `akumiszcza/obsidian-concerts-skill` is private and should not be published to ClawHub unless Adam explicitly changes that decision.
 - Plwiki helper references now also explicitly include `Szablon:Biblia` for Bible passages and `Szablon:Odn` for shortened citations; when Adam extends `plwiki-sandbox/Linki.md`, those additions should be read and propagated into the reusable plwiki skill notes.
 - New plwiki citation workflow: when native Cite sub-references are available, prefer `<ref name="..." details="..." />` over `{{Odn}}` for simple short-citation setups, especially when `{{Odn}}` would otherwise force a one-item bibliography. Define the full source only once in `<references>`, use `<ref name="ŹródłoRok" />` for unspecific reuse, and `<ref name="ŹródłoRok" details="s. ..." />` for page-specific reuse; do not duplicate the full named ref in article text.
+
+
+## 🌙 Dream Consolidation (2026-04-07 10:28 UTC)
+- **Session Key**: agent:main:discord:channel:1489526454634156122 _(from 2026-04-06-jestem.md)_
+- **Session ID**: 11777d55-c219-4b4b-94b2-9577e3a03504 _(from 2026-04-06-jestem.md)_
+- **Source**: discord _(from 2026-04-06-jestem.md)_
