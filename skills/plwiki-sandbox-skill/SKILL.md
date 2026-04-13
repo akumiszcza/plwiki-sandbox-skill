@@ -122,6 +122,7 @@ General rules:
 - When a future Polish article is genuinely expected and the concept/person already has a stable Wikidata item plus useful non-PL sitelinks, prefer `{{Link-interwiki|1=<proposed PL title>|Q=<wikidata Q-id>|tekst=<optional display text>}}` over a blind redlink or a raw `:en:` link.
 - Use `tekst=` for natural inflection in running prose, for example `{{Link-interwiki|J. M. E. McTaggart|Q=Q463553|tekst=J. M. E. McTaggarta}}`.
 - For planned-but-not-yet-stable targets such as a future `A-teoria` page or a person page like `Vincent Conitzer`, verify that the chosen Wikidata item really matches the intended encyclopedic concept and gives a meaningful interlanguage anchor; if not, keep plain text until the target is clearer.
+- For inline foreign-language glosses on plwiki, use the real local syntax `{{ang.|...}}` (with the dot). Do not write `{{ang|...}}`, because it can show up as a red `Szablon:Ang` in preview.
 - If no suitable Polish article is likely, remove the wikilink and keep plain text.
 - Re-check links inside infobox parameters, hatnotes, navboxes, and table cells.
 

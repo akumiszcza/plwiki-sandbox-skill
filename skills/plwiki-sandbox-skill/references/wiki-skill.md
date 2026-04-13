@@ -9,3 +9,4 @@ Core reminder for this repo:
   Archiwalny URL wpisuję wprost jako `url=` i dodaję tylko `data dostępu=...`.
 - Przy większych passach cytowań nie ufam samemu lokalnemu wrażeniu: przed pushem robię realny `action=parse` na dokładnym szkicu i traktuję wynik parsera plwiki jako ostateczną bramkę jakości.
 - W praktyce dla importowanych cytowań z enwiki wracają trzy bezpieczne mapowania: w `{{Cytuj pismo}}` `tom -> wolumin`, dla pierwszego autora `imię1/nazwisko1 -> imię/nazwisko`, a redaktorów w `{{Cytuj książkę}}` zapisuję jako `inni=... (red.)`.
+- Dla obcojęzycznych terminów w tekście używam poprawnej składni `Szablon:Ang`, czyli `{{ang.|...}}` z kropką. Błędne `{{ang|...}}` może w preview renderować się jak czerwony `Szablon:Ang`.
