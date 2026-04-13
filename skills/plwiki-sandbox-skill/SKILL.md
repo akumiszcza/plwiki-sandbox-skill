@@ -139,6 +139,7 @@ General rules:
 - Translate titles only when the cited work itself has an established Polish title or the surrounding prose needs an explanatory gloss.
 - Preserve archive URLs, access dates, and identifiers.
 - `{{Cytuj książkę}}` nie obsługuje pól `archiwum` ani `zarchiwizowano`; dla wersji archiwalnej wpisuję Wayback URL bezpośrednio w `url=` i używam `data dostępu=`.
+- Prefer `język=` in citations for clearly foreign-language sources, especially English-language references; for Polish-language sources it is optional and usually not worth forcing unless consistency or disambiguation really benefits.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
 - On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview. In practice, the safe recurring fix is: first author uses plain `imię` + `nazwisko`, later authors may use numbered fields like `imię2` + `nazwisko2` when the template supports them.
 - In `{{Cytuj pismo}}`, imported enwiki `tom=` should normally be converted to `wolumin=` on plwiki.
