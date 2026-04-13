@@ -107,6 +107,7 @@ General rules:
 - Replace enwiki metadata templates like short description / use mdy dates with plwiki-appropriate omission or local equivalent.
 - For `[[link|text]]`, prefer the Polish article target when confidently known.
 - If a concept almost certainly has a plwiki article but exact title is uncertain, keep visible anchor text and add a short HTML comment TODO.
+- If the exact narrow-topic article does not exist but a broader real plwiki article covers the same area, prefer linking to the real broader article with a narrower display label, as long as the wording stays truthful in context.
 - If no suitable Polish article is likely, remove the wikilink and keep plain text.
 - Re-check links inside infobox parameters, hatnotes, navboxes, and table cells.
 
