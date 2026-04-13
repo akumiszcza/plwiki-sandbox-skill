@@ -14,11 +14,12 @@ Memory and continuity:
 - Before continuing work on an article or a skill iteration, recall prior decisions, recurring pitfalls, and workflow preferences from memory when available.
 - At the start of work on any plwiki article, first make sure the local skill matches its authoritative repo state; do not begin article work against a stale local skill copy.
 - Also refresh the local article repo clone at `/home/ubuntu/.openclaw/plwiki-sandbox` with `git pull --ff-only` before every translation/cleanup/archive pass, not just once per session.
-- Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md` or another focused reference file instead of relying on chat history.
+- Treat durable preferences learned during plwiki work as part of the reusable workflow; if a lesson keeps recurring, save it in `references/patterns.md`, `wiki-skill.md` (repo copy), or another focused reference file instead of relying on chat history.
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
 - Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
 - `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
 - Read `Linki.md` from the article repo (`/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`) before article work and propagate reusable additions into the skill copy so both stay aligned.
+- If present in the article repo, read `/home/ubuntu/.openclaw/plwiki-sandbox/wiki-skill.md` and keep a corresponding copy/summary in this skill repo so the translation workflow stays current.
 - For current/future plwiki work, treat native Cite sub-referencing (`<ref name="..." details="..." />`) as the preferred replacement path for simple `{{Odn}}` + one-item bibliography setups when the target wiki supports it.
 - When converting from `{{Odn}}`, define the full source only once in `<references>`, use `<ref name="ŹródłoRok" />` for unspecific reuse, and use `<ref name="ŹródłoRok" details="s. ..." />` for page-specific reuse; do not create a second full definition of the same named ref in article text.
 - When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
@@ -52,7 +53,7 @@ Startup checklist for every article:
 
 1. Sync the local `plwiki-sandbox-skill` with its authoritative repo state before doing article work.
 2. Refresh the article repo from `origin/main` in `/home/ubuntu/.openclaw/plwiki-sandbox` before reporting queue state, choosing the next file, or doing any translation-related pass.
-3. Read the article repo `Linki.md` and fold any reusable additions back into the skill copy when needed.
+3. Read the article repo `Linki.md` and `wiki-skill.md`, then fold any reusable additions back into the skill copy when needed.
 4. If Adam may have edited the draft in the visual editor or directly on GitHub, refresh the article repo from `origin/main` again before every new cleanup pass, not only at article start.
 5. Pick the source article from the repo root, not from `PL/` or `done/`.
 6. Then read the source `.mediawiki` file fully.
@@ -125,6 +126,7 @@ General rules:
 - Keep citation templates/references intact when possible.
 - Translate titles only when the cited work itself has an established Polish title or the surrounding prose needs an explanatory gloss.
 - Preserve archive URLs, access dates, and identifiers.
+- `{{Cytuj książkę}}` nie obsługuje pól `archiwum` ani `zarchiwizowano`; dla wersji archiwalnej wpisuję Wayback URL bezpośrednio w `url=` i używam `data dostępu=`.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
 - On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview.
 - When several adjacent sentences reuse the same source, convert duplicate literal refs into named refs during cleanup instead of keeping repeated full citation bodies.

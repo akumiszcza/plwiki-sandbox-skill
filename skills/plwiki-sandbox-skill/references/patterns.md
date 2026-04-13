@@ -136,6 +136,12 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `Szablon:Cytuj` - https://pl.wikipedia.org/wiki/Szablon:Cytuj
 - When fixing imported enwiki references, prefer aligning fields with these plwiki docs over guessing aliases from enwiki habits.
 
+### Archiwum w Cytuj i warianty
+- `{{Cytuj książkę}}` nie przyjmuje `archiwum` ani `zarchiwizowano`.
+- Dla odwołania do wersji archiwalnej w `Cytuj książkę` wpisuję pełny URL Wayback bezpośrednio w `|url=`.
+- Datę dostępu zapisuję jako `|data dostępu=RRRR-MM-DD`.
+- Pola `archiwum=` i `zarchiwizowano=` stosuję dla `{{Cytuj}}`, `{{Cytuj pismo}}` i `{{Cytuj stronę}}` po sprawdzeniu zgodności z dokumentacją.
+
 ### Convert enwiki citation templates to plwiki citation templates
 - Source: `{{Cite web}}`, `{{cite web}}`, `{{cite news}}`, `{{cite magazine}}`
 - Preferred action:
@@ -178,6 +184,21 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: a sentence-ending citation should sit before punctuation on plwiki
 - Preferred action: use `...tekst<ref .../>.` or `...tekst<ref>...</ref>.`
 - Notes: fixing `.<ref` is only half the job; verify that the sentence still ends with a literal period after the ref when the prose requires one
+
+### Remove red author links inside references
+- Pattern: author names inside citation/ref entries render as red links or add noisy low-value linking
+- Preferred action: in references, prefer plain-text author names over redlinked author wikilinks
+- Notes: keep links in refs only when they are clearly useful and high-confidence; in most citation author fields, plain text is cleaner than red author links
+
+### Remove stray trailing punctuation from reference definitions
+- Pattern: a reference definition inside `== Przypisy ==` ends with an extra literal period outside the citation template/content, e.g. `<ref name="Pessoa">{{Cytuj książkę|...}}.</ref>`
+- Preferred action: remove the stray punctuation from inside the ref definition unless it is truly part of quoted source text
+- Notes: this kind of extra period is easy to miss in source but produces inconsistent reference formatting
+
+### Prefer normalized title/plain-text forms in references over raw identifier-like wikilinks
+- Pattern: a cited work title appears as a raw or machine-like wikilink that is likely to render red or unnatural on plwiki, e.g. underscore-separated forms such as `[[Maggid_Mesharim]]`
+- Preferred action: prefer a normal readable title in plain text (or a verified plwiki target if one clearly exists) instead of keeping the raw identifier-shaped wikilink
+- Notes: titles copied from URLs, database ids, or underscore forms should be treated with suspicion during citation cleanup
 
 ### Preserve named-ref definitions when replacing reflists
 - Pattern: article has `<references>...</references>` containing named ref definitions used in body text
@@ -375,6 +396,61 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - instead of `skille z lokalnego workspace'u`
   - prefer `skille przechowywane w lokalnej przestrzeni roboczej`
 
+
+### Remove or replace unsupported enwiki citation params (expanded list)
+- Pattern: params that plwiki `Cytuj pismo` / `Cytuj książkę` / `Cytuj stronę` do not support
+- **Always remove when importing from enwiki:**
+  - `tom` (volume) — `Cytuj pismo` does not have a volume field; omit it
+  - `hdl` (Handle identifier) — unknown in all three plwiki cite templates
+  - `artykuł` — enwiki alias for article-number, not accepted on plwiki
+  - `redaktor` (without number suffix) — use `redaktor1=` or omit
+  - `url rozdziału` — not a valid param in `Cytuj książkę`; either omit or move the URL to `url=`
+  - `url-status` — enwiki-only param, remove silently
+- **Safe equivalents or workarounds:**
+  - For `url rozdziału` in `Cytuj książkę`: either omit the chapter URL or move it to `url=` if needed
+  - For `artykuł`: the article/chapter identifier can usually be kept as `id=CDXXXXXX` or omitted
+- Notes: when preview reports "Nieznane pola", consult this list first before guessing
+
+### Infoboks leków na plwiki — szablon „Infobox drug" nie istnieje
+- Pattern: enwiki uses `{{Infobox drug}}` for pharmaceutical/vaccine articles
+- Preferred action: do NOT use `{{Infobox drug}}` on plwiki — it renders as a red broken template
+- Verified plwiki alternative: `{{Lek}}` or `{{Leki infobox}}` — check current plwiki docs before use
+- Safe fallback when unsure: omit the infobox entirely in the draft and add a TODO comment, rather than using a broken red template
+- Notes: this applies to vaccine articles and any drug/pharmaceutical article imported from enwiki
+
+### Szablony nawigacyjne — `{{Szczepionki}}` nie istnieje na plwiki
+- Pattern: enwiki uses `{{Vaccines}}` navbox; automatic translation to `{{Szczepionki}}` produces a red template
+- Preferred action: check whether a plwiki navigation template for vaccines exists before using it; if uncertain, omit and add a TODO comment
+- Notes: do not guess Polish navbox names from English equivalents — always verify first
+
+### Poprawna składnia obrazków na plwiki — kolejność parametrów
+- Source: `Pomoc:Ilustrowanie` na plwiki
+- Preferred action: użyj kolejności `right|thumb` (lub `left|thumb`), NIE `miniatura|prawo`
+- Canonical form: `[[Plik:nazwa.jpg|right|thumb|Opis podpisu]]`
+- Aliases `miniatura` i `prawo` są technicznie akceptowane przez parser, ale powodują problemy z rozpoznawaniem capta i renderowaniem podpisu; angielskie `right|thumb` jest bezpieczniejsze
+- Do NOT use: `miniatura|prawo|opis` — opis może nie być renderowany jako podpis
+- Use: `right|thumb|opis` — opis zawsze widoczny jako podpis pod miniaturką
+
+### `{{Legenda}}` w podpisach map — użycie wewnątrz capta
+- Szablon `{{Legenda|kolor|tekst}}` istnieje na plwiki i działa
+- Poprawne użycie: wewnątrz capta znacznika `[[Plik:...|right|thumb|tekst intro\n{{Legenda|...}}\n{{Legenda|...}}]]`
+- Błąd poprzedni: stosowanie `miniatura|prawo` powodowało że cały caption nie był rozpoznawany — stąd legenda „wypadała" z obrazka
+- Po naprawieniu kolejności na `right|thumb` szablony `{{Legenda}}` w capcie działają poprawnie
+- Nie umieszczaj `{{Legenda}}` poza znacznikiem `[[Plik:...]]` jeśli chcesz legendę widoczną jako część podpisu obrazka
+
+### Archiwa przypisów (`archiwum=` / `zarchiwizowano=`)
+- Dla przypisów z `|url=` bez archiwum można półautomatycznie uzupełniać `|archiwum=` i `|zarchiwizowano=` przez Wayback Machine API: `https://archive.org/wayback/available?url=...`
+- W tym środowisku preferuj prosty skrypt Python do odpytania Wayback API; bashowe tablice/expansje mogą zostać zablokowane jako obfuscation
+- Jeśli snapshot istnieje, wpisz prawdziwy adres Wayback w formie `https://web.archive.org/web/YYYYMMDDHHMMSS/original-url`
+- `zarchiwizowano=` ustawiaj jako `YYYY-MM-DD` wyciągnięte z timestampa Wayback
+- Nie wpisuj jako `archiwum=` zwykłego permalinku strony, share URL ani linku z parametrami `?st=...`, `reflink=...`, `fbclid=...` itp. To nie jest archiwum
+- Jeśli w artykule live jest zły `archiwum=` ale poprawka jest drobna, można po prostu odesłać poprawiony ref jako tekst do ręcznej podmiany na wiki, bez zbędnego commita do repo pomocniczego
+- Przy QA przypisów sprawdzaj, czy tytuł źródła faktycznie odpowiada treści artykułu/tabeli; przykład błędu do unikania: dokument WHO o yellow fever użyty jako źródło tabeli o wymogach meningokokowych
+
+### Mapy / grafiki w szablonie thumb — upright zbyt duże
+- Pattern: an SVG map with `upright=1.9` or larger renders as an oversized image that dominates the preview, especially for complex map graphics
+- Preferred action: reduce `upright` value (e.g. to `upright=1.2` or `upright=1.3`) or use `width=` in pixels to control the displayed size
+- Notes: very wide SVG maps often need explicit size control; prefer smaller values initially and let Adam adjust
 
 ## Iterative preview workflow
 

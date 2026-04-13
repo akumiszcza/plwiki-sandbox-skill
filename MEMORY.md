@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-_Last updated: 2026-04-04_
+_Last updated: 2026-04-13_
 
 ---
 
@@ -55,6 +55,7 @@ _Last updated: 2026-04-04_
 - Headless gog keyring usage requires `GOG_KEYRING_PASSWORD` in the environment.
 - Gateway restarts can stop gmail-watcher if tailscaled or gog are not running; restart tailscaled and run `openclaw webhooks gmail run`.
 - Working Gmail body retrieval path in this environment: use `gog gmail messages search "<query>" --include-body --json --results-only` (and `--account u6133809438@gmail.com` when needed). Prefer this for forwarded booking emails when plain message search is not enough.
+- For lightweight cron/VPS Python automations here, prefer the standard library over optional packages like `requests` and `bs4` when practical; missing extras can produce misleading `exit 1` failures in wrappers and watchers.
 - In plwiki, footnote placement is a hard-stop QA item: refs should normally appear before closing punctuation, and article-wide ref placement should be explicitly checked before finishing a pass.
 - First ACP Codex pass on plwiki translation underperformed when left with a generic prompt: it over-compressed the article, mishandled references, and needed local QA. For future ACP plwiki runs, pass the concrete workflow rules explicitly and treat the result as a draft, not a ready article.
 - For plwiki QA, trust live preview/template errors over heuristic local checks; explicitly validate citation-template compatibility against `Linki.md`, preserve more of the source article structure when appropriate, and prune redlinked `Zobacz też` entries before calling a draft finished.
@@ -81,6 +82,7 @@ _Last updated: 2026-04-04_
 - Maintain travel files in chronological order.
 - For non-classical concert notes in Obsidian/BIGAI, use a richer template with header image, official links, band Wiki links, top TODO section, practical items, event time, support acts, and a clearly marked sample/average setlist section when needed.
 - Before future plwiki/article editing work, read `/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`, use it as the citation/template reference, and sync durable additions from the article repo back into `/home/ubuntu/.openclaw/workspace/skills/plwiki-sandbox-skill/Linki.md`.
+- In `Philosophy of space and time/PL.mediawiki` przyjęto zasadę: `{{Cytuj książkę}}` nie używa pól `archiwum` i `zarchiwizowano`; przy archiwalnym źródle wpisuje się pełny `url=` (np. Wayback) i `data dostępu=`. Poprawiona pozycja została zamknięta commitem `83f6c81`.
 - Do not remove or replace an existing useful concert graphic by default; keep it or add a new image alongside it.
 - For Obsidian plugin tables that sum cancellation-insurance costs, numeric PLN cells must be plain numbers only, with a dot as decimal separator, and without `PLN` / `zł` suffixes; leave cells empty when a currency value is unavailable.
 - BIGAI `Brudnopis.md` is the reference scratchpad for nonstandard Markdown patterns to reuse later. It currently documents hidden comments via `[text]: #`, reference-style links, footnotes `[^1]`, strikethrough, highlight `==text==`, and Markdeep HTML trailer usage.
