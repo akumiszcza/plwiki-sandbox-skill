@@ -32,6 +32,8 @@ GitHub-preview flow:
 - In this setup, the authoritative article repo is `https://github.com/akumiszcza/plwiki-sandbox` with local clone at `/home/ubuntu/.openclaw/plwiki-sandbox`; treat that clone as the default working copy for plwiki article files.
 - After article-side work, commit and push the article repo promptly because work may continue from multiple machines.
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
+- After link/template cleanup, run a live plwiki parser preview against the full local wikitext with `action=parse`, not just title-existence checks. Prefer POSTing the whole draft text from the local file so preview reflects the exact unpublished state.
+- For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
   2. fix parser/template/reference errors
@@ -86,6 +88,7 @@ Before presenting a converted draft, verify:
 - dates, units, punctuation, and quotations adapted to Polish usage
 - inline refs are placed according to plwiki help, normally before closing punctuation; re-check after cleanup passes because edits often move refs to the wrong side
 - internal wikilinks repointed or deliberately left plain if target is doubtful
+- live parser preview via `action=parse` shows no redlinks in the rendered draft and no obvious parser/template errors
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
 - references still parse sensibly after translation
