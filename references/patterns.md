@@ -136,6 +136,34 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `Szablon:Cytuj` - https://pl.wikipedia.org/wiki/Szablon:Cytuj
 - When fixing imported enwiki references, prefer aligning fields with these plwiki docs over guessing aliases from enwiki habits.
 
+
+### Verify parameter support per citation-template variant
+- Pattern: a generic citation-template doc suggests a field such as `dostęp=`
+- Preferred action: verify the exact target template variant in live preview; do not assume `{{Cytuj pismo}}` or `{{Cytuj książkę}}` inherit every field supported by `{{Cytuj}}`
+- Notes: preview may expose `Nieznane pola: "dostęp"` and hidden error categories such as `Szablon_cytuj_do_sprawdzenia`
+
+### Prefer `{{Cytuj}}` for explicit access-status labels
+- Pattern: the draft needs to say that a source is `otwarty`, `zamknięty`, or `częściowy`
+- Preferred action: use `{{Cytuj}}` if preview confirms support for `dostęp=...`; avoid forcing `dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}`
+- Notes: rerun full parser preview afterward and keep a bibliographic-record link when full text is not openly available
+
+### Verify real OA/full-text availability before encoding it
+- Pattern: a repository record or helper page makes access status look ambiguous
+- Preferred action: inspect the real landing page or direct PDF before marking the source as open/closed/partial in the citation
+- Notes: if the full text is closed or uncertain, point to the bibliographic record instead of implying open full-text access
+
+### Commit gate after bibliography or link cleanup
+- Pattern: a citation/link pass looks correct locally and is about to be committed
+- Preferred action: before commit/push, run full `action=parse` preview on the local draft and `python3 scripts/check_ref_punctuation.py <file>`
+- Success condition: `REDLINKS 0`, `ERROR_CATS 0`, no `Szablon_cytuj_do_sprawdzenia`, and script output like `OK: no obvious ref/punctuation issues found`
+
+### Broader real target with narrower display label
+- Pattern: a narrow concept lacks a plwiki page, but a broader verified page covers the same area
+- Preferred action: link to the broader real page with a narrower display label if the statement stays truthful in context
+- Example:
+  - `[[Filozofia przestrzeni i czasu|filozofii czasu]]`
+- Notes: remove the link entirely if the broader target would distort the meaning
+
 ### Convert enwiki citation templates to plwiki citation templates
 - Source: `{{Cite web}}`, `{{cite web}}`, `{{cite news}}`, `{{cite magazine}}`
 - Preferred action:
