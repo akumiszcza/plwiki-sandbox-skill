@@ -34,6 +34,8 @@ GitHub-preview flow:
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
 - After link/template cleanup, run a live plwiki parser preview against the full local wikitext with `action=parse`, not just title-existence checks. Prefer POSTing the whole draft text from the local file so preview reflects the exact unpublished state.
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
+- If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Fetch the live wikitext first via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`), confirm the exact live title, then diff local vs live.
+- When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
   2. fix parser/template/reference errors
@@ -115,6 +117,7 @@ General rules:
 - For `[[link|text]]`, prefer the Polish article target when confidently known.
 - If a concept almost certainly has a plwiki article but exact title is uncertain, keep visible anchor text and add a short HTML comment TODO.
 - If the exact narrow-topic article does not exist but a broader real plwiki article covers the same area, prefer linking to the real broader article with a narrower display label, as long as the wording stays truthful in context.
+- Example of the above pattern: prefer a real target such as `[[Filozofia przestrzeni i czasu|filozofii czasu]]` over inventing a non-existent narrow title.
 - If no suitable Polish article is likely, remove the wikilink and keep plain text.
 - Re-check links inside infobox parameters, hatnotes, navboxes, and table cells.
 
@@ -135,6 +138,12 @@ General rules:
 - On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview.
 - When several adjacent sentences reuse the same source, convert duplicate literal refs into named refs during cleanup instead of keeping repeated full citation bodies.
 - When adding Polish-language sources to an article translated from English, prefer sources tightly about the exact concept or dispute in the article, ideally academic publications or credible university-repository records; do not pad bibliography with merely adjacent philosophy-of-time material just because it is in Polish.
+
+
+- Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, `REDLINKS 0`, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and a clean `python3 scripts/check_ref_punctuation.py <article-file>` result.
+- Documentation for `{{Cytuj}}` does not automatically apply to `{{Cytuj pismo}}` or `{{Cytuj książkę}}`; verify less-common params on the exact template variant in live preview instead of assuming inheritance.
+- If explicit access status must be shown (`otwarty`, `zamknięty`, `częściowy`), prefer universal `{{Cytuj}}` after preview verification; do not force `|dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}` unless the exact variant is proven to support it.
+- Do not guess open-access or full-text availability from template docs or vague repository hints; verify against the real landing page, bibliographic record, or direct PDF. If access is closed or uncertain, cite the bibliographic record rather than implying full-text access.
 
 ## Tables and infoboxes
 
