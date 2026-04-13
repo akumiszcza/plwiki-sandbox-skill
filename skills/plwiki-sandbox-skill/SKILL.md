@@ -139,12 +139,15 @@ General rules:
 - Preserve archive URLs, access dates, and identifiers.
 - `{{Cytuj książkę}}` nie obsługuje pól `archiwum` ani `zarchiwizowano`; dla wersji archiwalnej wpisuję Wayback URL bezpośrednio w `url=` i używam `data dostępu=`.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
-- On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview.
+- On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview. In practice, the safe recurring fix is: first author uses plain `imię` + `nazwisko`, later authors may use numbered fields like `imię2` + `nazwisko2` when the template supports them.
+- In `{{Cytuj pismo}}`, imported enwiki `tom=` should normally be converted to `wolumin=` on plwiki.
+- In `{{Cytuj książkę}}`, imported editor fields such as `nazwisko redaktora`, `imię redaktora`, or `redaktorzy` should be rewritten to `inni=... (red.)` unless live docs/preview prove a better local form.
 - When several adjacent sentences reuse the same source, convert duplicate literal refs into named refs during cleanup instead of keeping repeated full citation bodies.
 - When adding Polish-language sources to an article translated from English, prefer sources tightly about the exact concept or dispute in the article, ideally academic publications or credible university-repository records; do not pad bibliography with merely adjacent philosophy-of-time material just because it is in Polish.
 
 
 - Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, `REDLINKS 0`, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and a clean `python3 scripts/check_ref_punctuation.py <article-file>` result.
+- Treat the real wiki parser preview as the final arbiter for citation compatibility. Local intuition or even generic `Szablon:Cytuj` docs do not outrank a live `action=parse` result from the exact draft text.
 - Documentation for `{{Cytuj}}` does not automatically apply to `{{Cytuj pismo}}` or `{{Cytuj książkę}}`; verify less-common params on the exact template variant in live preview instead of assuming inheritance.
 - If explicit access status must be shown (`otwarty`, `zamknięty`, `częściowy`), prefer universal `{{Cytuj}}` after preview verification; do not force `|dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}` unless the exact variant is proven to support it.
 - Do not guess open-access or full-text availability from template docs or vague repository hints; verify against the real landing page, bibliographic record, or direct PDF. If access is closed or uncertain, cite the bibliographic record rather than implying full-text access.
