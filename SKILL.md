@@ -27,6 +27,8 @@ GitHub-preview flow:
 - If the human uses GitHub state to generate preview, commit and push after each meaningful pass instead of stopping on local-only changes.
 - For durable skill updates Adam is expected to rely on later, default to commit + push without asking unless he explicitly requests local-only work.
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
+- After link/template cleanup, run a live plwiki parser preview against the full local wikitext with `action=parse`, not just title-existence checks. Prefer POSTing the whole draft text from the local file so preview reflects the exact unpublished state.
+- For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
   2. fix parser/template/reference errors
@@ -80,6 +82,7 @@ Before presenting a converted draft, verify:
 - dates, units, punctuation, and quotations adapted to Polish usage
 - inline refs are placed according to plwiki help, normally before closing punctuation; re-check after cleanup passes because edits often move refs to the wrong side
 - internal wikilinks repointed or deliberately left plain if target is doubtful
+- live parser preview via `action=parse` shows no redlinks in the rendered draft and no obvious parser/template errors
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
 - references still parse sensibly after translation
