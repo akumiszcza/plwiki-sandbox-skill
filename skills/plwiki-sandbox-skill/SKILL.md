@@ -34,8 +34,9 @@ GitHub-preview flow:
 - Keep passes small and checkpointed: fix one class of problems, push, inspect preview, then continue.
 - After link/template cleanup, run a live plwiki parser preview against the full local wikitext with `action=parse`, not just title-existence checks. Prefer POSTing the whole draft text from the local file so preview reflects the exact unpublished state.
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
-- If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Fetch the live wikitext first via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`), confirm the exact live title, then diff local vs live.
+- If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Refresh the article repo from `origin/main` immediately before the comparison, then fetch the live wikitext via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`) and diff local vs live.
 - When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
+- Practical correction from the same session: a pull done earlier in the work is not enough for an exact live-vs-local verdict. If the question is whether local and live are identical right now, do a fresh pull right before the diff.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
   2. fix parser/template/reference errors
