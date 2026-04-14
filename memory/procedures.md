@@ -19,6 +19,7 @@ _Last updated: 2026-04-14_
 - `agent-browser` is installed globally in `~/.openclaw/skills/agent-browser`; Playwright browsers were installed and browser default preference points there.
 - When I add durable memory or skill learnings Adam explicitly wants to survive `/new`, also commit and push the workspace repo so the change persists across resets.
 - For plwiki work, read `/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md` first, treat it as the practical citation/template notebook, and sync durable additions back into `/home/ubuntu/.openclaw/workspace/skills/plwiki-sandbox-skill/Linki.md`.
+- If Adam says a plwiki page is already live, then before any later fixes or cleanup passes first refresh the local `PL.mediawiki` from the current live plwiki raw, and only then continue editing.
 - For plwiki QA, trust live preview/template errors over heuristic local checks; explicitly check ref placement before punctuation, validate citation-template compatibility against `Linki.md`, and run a real wiki preview/parser check before push on larger citation/linking passes.
 - For plwiki "is local identical to live?" checks, run a fresh `git pull` or `git pull --rebase` immediately before the diff and compare against the article's actual live title.
 - For planned-but-missing Polish pages, use `{{link-interwiki|1=...|Q=...|tekst=...}}` only when the Wikidata anchor is solid; use `tekst=` for inflection and prefer plain text over a guessed interwiki when the item is weak.
