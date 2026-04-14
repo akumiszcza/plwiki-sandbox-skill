@@ -132,6 +132,11 @@ General rules:
 - Keep citation templates/references intact when possible.
 - Translate titles only when the cited work itself has an established Polish title or the surrounding prose needs an explanatory gloss.
 - Preserve archive URLs, access dates, and identifiers.
+- When applying an external audit to an already referenced draft, do not solve prose issues by deleting refs. Prefer rewriting the sentence, swapping a dead URL for a stabler target (for example DOI, publisher PDF, or Oxford Academic), or updating the citation fields in place.
+- In biographical leads, if initials are the normal encyclopedic form of the name, prefer `'''X. Y. Z. Nazwisko''' (Pełne Imię...)` over `właśc.`.
+- Avoid over-precise family-relationship translations such as `stryjeczny wuj`, unless the source really supports that exact Polish kinship label.
+- For living debates that continue into recent scholarship, prefer wording like `współczesna filozofia ...` over `nowożytna filozofia ...`, unless the historical periodization is itself the point.
+- Replace fragile numeric reception claims like `ponad 1600 cytowań` with more evergreen formulations unless the exact count is itself sourced as historically significant.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
 - On plwiki, prefer simple single-author citation fields unless verified docs clearly support multi-author numbering for the chosen template; imported `imię1` / `nazwisko1` patterns often break preview.
 - When several adjacent sentences reuse the same source, convert duplicate literal refs into named refs during cleanup instead of keeping repeated full citation bodies.
