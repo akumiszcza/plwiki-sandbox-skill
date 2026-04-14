@@ -17,8 +17,10 @@ Zasady użycia:
 - Przy ilustracjach na plwiki preferuj `right|thumb`, nie `miniatura|prawo`, bo ta druga forma potrafi psuć rozpoznanie podpisu.
 - `{{Legenda}}` może działać wewnątrz podpisu obrazka, jeśli składnia `[[Plik:...|right|thumb|...]]` jest poprawna.
 - Przy przypisach sprawdzaj nie tylko format, ale też czy źródło naprawdę wspiera daną tezę lub tabelę.
+- Gdy trzeba zostawić techniczne oznaczenie problemu lub tymczasowy znacznik porządkowy w wikikodzie, najpierw sprawdź `Pomoc:Znaczniki`, zamiast zgadywać lokalną składnię.
 - `archiwum=` musi prowadzić do prawdziwego archiwum (np. Wayback), nie do permalinku, share URL ani linku z parametrami śledzącymi.
 
 ## Linki do rozbudowy
 - Pomoc:Ilustrowanie — składnia obrazków, podpisów, pozycjonowania i miniaturek
+- Pomoc:Znaczniki — lokalne znaczniki i oznaczenia problemów, gdy trzeba coś otagować zamiast opisywać ręcznie.
 - Szablon:Legenda — legenda kolorów w podpisach map i grafik
