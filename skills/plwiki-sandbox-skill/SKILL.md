@@ -20,6 +20,7 @@ Memory and continuity:
 - `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
 - Read `Linki.md` from the article repo (`/home/ubuntu/.openclaw/plwiki-sandbox/Linki.md`) before article work and propagate reusable additions into the skill copy so both stay aligned.
 - If present in the article repo, read `/home/ubuntu/.openclaw/plwiki-sandbox/wiki-skill.md` and keep a corresponding copy/summary in this skill repo so the translation workflow stays current.
+- If the article repo contains task-specific workflow instructions such as `roadmap.md`, treat them as active instructions for that article. Do not stop to ask for approval between routine rounds when the file explicitly says to keep iterating; continue until the article is genuinely polished or you hit a real blocker.
 - For current/future plwiki work, treat native Cite sub-referencing (`<ref name="..." details="..." />`) as the preferred replacement path for simple `{{Odn}}` + one-item bibliography setups when the target wiki supports it.
 - When converting from `{{Odn}}`, define the full source only once in `<references>`, use `<ref name="ŹródłoRok" />` for unspecific reuse, and use `<ref name="ŹródłoRok" details="s. ..." />` for page-specific reuse; do not create a second full definition of the same named ref in article text.
 - When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
@@ -36,7 +37,9 @@ GitHub-preview flow:
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Refresh the article repo from `origin/main` immediately before the comparison, then fetch the live wikitext via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`) and diff local vs live.
 - If Adam says a page is already live and asks for further changes later, treat live plwiki raw as the source of truth for the next pass: refresh the local `PL.mediawiki` from live raw first, then make any further edits on top of that refreshed file.
+- After syncing a published page back from live, preserve that synced raw in the repo before doing another cleanup pass. If the live version expanded repeated refs into named definitions inside `<references>...</references>` or added categories, do not immediately "normalize" it back locally before the sync checkpoint.
 - When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
+- When a synced live file defines named refs inside `<references>...</references>`, `check_ref_punctuation.py` can report false positives on the reference-definition lines. Treat prose-line findings as the real blocker and do not "fix" the refs block mechanically without checking context.
 - Practical correction from the same session: a pull done earlier in the work is not enough for an exact live-vs-local verdict. If the question is whether local and live are identical right now, do a fresh pull right before the diff.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
@@ -93,7 +96,7 @@ Before presenting a converted draft, verify:
 - dates, units, punctuation, and quotations adapted to Polish usage
 - inline refs are placed according to plwiki help, normally before closing punctuation; re-check after cleanup passes because edits often move refs to the wrong side
 - internal wikilinks repointed or deliberately left plain if target is doubtful
-- live parser preview via `action=parse` shows no redlinks in the rendered draft and no obvious parser/template errors
+- live parser preview via `action=parse` shows no accidental redlinks in the rendered draft and no obvious parser/template errors; intentional redlinks from verified `{{link-interwiki}}` are acceptable only if they are explicitly expected and are the only remaining redlinks
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
 - references still parse sensibly after translation
@@ -107,6 +110,7 @@ Hard stop:
 - When fixing ref placement, operate on the current file content and use targeted, syntax-aware edits; then re-check both sides of the sentence boundary: `...<ref/>.` not `....<ref/>` and not `...<ref/> Następne zdanie`.
 - Do not replace `<references>...</references>` with `{{Przypisy}}` unless all named-ref definitions have already been inlined or otherwise preserved. A removal pass can create dozens of orphaned named refs at once.
 - Before calling any preview-fix pass complete, run `scripts/check_ref_punctuation.py <article-file>` from this skill and fix every reported `LEAKED_CITE`, `EMPTY_NAMED_REF`, and `MISSING_PERIOD_AFTER_REF` in normal prose.
+- If a live-synced file keeps named-ref definitions inside `<references>...</references>`, treat false positives from those definition lines as noise. Fix the prose findings, then let the live parser preview decide the real pass/fail outcome.
 
 ## Template and link handling
 
@@ -133,6 +137,7 @@ General rules:
 - Remove enwiki categories.
 - Replace with Polish categories only when confident.
 - Do not translate category names literally unless they match real plwiki naming.
+- For philosophy-of-time pages on plwiki, `[[Kategoria:Filozofia czasu]]` is red; prefer `[[Kategoria:Filozofia czasu i przestrzeni]]`, and add `[[Kategoria:Czas]]` when the article scope clearly warrants it.
 - If category mapping is uncertain, omit categories for now rather than guess.
 
 ## References and citations
@@ -140,6 +145,11 @@ General rules:
 - Keep citation templates/references intact when possible.
 - Translate titles only when the cited work itself has an established Polish title or the surrounding prose needs an explanatory gloss.
 - Preserve archive URLs, access dates, and identifiers.
+- When applying an external audit to an already referenced draft, do not solve prose issues by deleting refs. Prefer rewriting the sentence, swapping a dead URL for a stabler target (for example DOI, publisher PDF, or Oxford Academic), or updating the citation fields in place.
+- In biographical leads, if initials are the normal encyclopedic form of the name, prefer `'''X. Y. Z. Nazwisko''' (Pełne Imię...)` over `właśc.`.
+- Avoid over-precise family-relationship translations such as `stryjeczny wuj`, unless the source really supports that exact Polish kinship label.
+- For living debates that continue into recent scholarship, prefer wording like `współczesna filozofia ...` over `nowożytna filozofia ...`, unless the historical periodization is itself the point.
+- Replace fragile numeric reception claims like `ponad 1600 cytowań` with more evergreen formulations unless the exact count is itself sourced as historically significant.
 - `{{Cytuj książkę}}` nie obsługuje pól `archiwum` ani `zarchiwizowano`; dla wersji archiwalnej wpisuję Wayback URL bezpośrednio w `url=` i używam `data dostępu=`.
 - Prefer `język=` in citations for clearly foreign-language sources, especially English-language references; for Polish-language sources it is optional and usually not worth forcing unless consistency or disambiguation really benefits.
 - Do not change publication facts unless correcting an obvious source-side formatting issue.
@@ -150,7 +160,7 @@ General rules:
 - When adding Polish-language sources to an article translated from English, prefer sources tightly about the exact concept or dispute in the article, ideally academic publications or credible university-repository records; do not pad bibliography with merely adjacent philosophy-of-time material just because it is in Polish.
 
 
-- Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, `REDLINKS 0`, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and a clean `python3 scripts/check_ref_punctuation.py <article-file>` result.
+- Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and either `REDLINKS 0` or only the explicitly intended redlinks coming from verified `{{link-interwiki}}`. Also require that `python3 scripts/check_ref_punctuation.py <article-file>` shows no real prose-level problems, even if a live-synced `<references>` block still triggers known false positives.
 - Treat the real wiki parser preview as the final arbiter for citation compatibility. Local intuition or even generic `Szablon:Cytuj` docs do not outrank a live `action=parse` result from the exact draft text.
 - Documentation for `{{Cytuj}}` does not automatically apply to `{{Cytuj pismo}}` or `{{Cytuj książkę}}`; verify less-common params on the exact template variant in live preview instead of assuming inheritance.
 - If explicit access status must be shown (`otwarty`, `zamknięty`, `częściowy`), prefer universal `{{Cytuj}}` after preview verification; do not force `|dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}` unless the exact variant is proven to support it.

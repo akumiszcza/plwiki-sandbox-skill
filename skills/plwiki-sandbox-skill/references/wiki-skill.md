@@ -14,3 +14,6 @@ Core reminder for this repo:
 - Jeżeli Adam każe zachować wszystkie przypisy, nie rozwiązuję redakcji przez usuwanie istniejących refów, tylko przez poprawę treści, bibliografii i metadanych.
 - Dla opisów zmian na plwiki przy tłumaczeniu i dokładaniu źródeł dobrze działa krótki styl rzeczownikowy, np. `enwiki + polskie źródła`; pomocniczy punkt odniesienia: `https://pl.wikipedia.org/wiki/Wikipedia:Opis_zmian`.
 - Po publikacji live kolejny mikro-pass zaczynam od świeżego raw z live do lokalnego `PL.mediawiki`, nawet jeśli repo było przed chwilą zsynchronizowane.
+- Jeśli repo artykułu ma `roadmap.md`, traktuję go jako wiążący workflow dla tego hasła i nie zatrzymuję się na pytania o zatwierdzenie między zwykłymi rundami.
+- Końcowy `action=parse` nie musi dawać literalnego `REDLINKS 0`, jeśli jedyne czerwone linki są celowo zostawionymi `{{link-interwiki}}`; to akceptowalny stan, o ile nie ma innych redlinków ani kategorii błędów.
+- Przy live-synced plikach z definicjami przypisów w `<references>...</references>` wynik `check_ref_punctuation.py` interpretuję na poziomie prozy, bo linie definicji dalej potrafią dawać znane false positive.
