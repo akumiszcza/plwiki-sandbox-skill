@@ -31,6 +31,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: use Polish target if it exists; otherwise keep plain linked/unlinked name only after verification
 - Notes: do not assume disambiguator format matches enwiki
 
+### Prefer lowercase `{{link-interwiki}}`
+- Pattern: a future/planned plwiki target is linked through `Link-interwiki`
+- Preferred action: write the template as lowercase `{{link-interwiki|...}}`
+- Notes: uppercase `{{Link-interwiki}}` also works, but lowercase is the practical house style in this workflow and survives autocorrect/manual touch-ups better
+
 ## Categories
 
 ### English categories
@@ -125,6 +130,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - when a translation is accepted as done, archive the original by moving it to `done/<same-filename>.mediawiki`
   - do not delete source files yourself unless Adam explicitly asks; Adam may still want manual edits first
 
+### Published-page follow-up pass
+- Pattern: Adam says the page is already live on plwiki and wants another cleanup or archive pass
+- Preferred action: fetch the current live raw into the local `PL.mediawiki` before editing
+- Notes: even if the repo was synced earlier, live raw is the source of truth for the next pass
+
 
 ## References and citation templates
 
@@ -135,6 +145,23 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - `Szablon:Cytuj stronę` - https://pl.wikipedia.org/wiki/Szablon:Cytuj_stronę
   - `Szablon:Cytuj` - https://pl.wikipedia.org/wiki/Szablon:Cytuj
 - When fixing imported enwiki references, prefer aligning fields with these plwiki docs over guessing aliases from enwiki habits.
+
+### Avoid `doi=` in `{{Cytuj stronę}}` unless preview proves it safe
+- Pattern: a web-page citation carries a DOI and the draft uses `{{Cytuj stronę}}`
+- Preferred action: omit `doi=` from `{{Cytuj stronę}}` unless the exact draft passes live preview with it
+- Notes: on plwiki this can trigger hidden citation-error categories such as `Szablon_cytuj_do_sprawdzenia`; if the DOI matters, prefer a bibliographic variant better matched to the source
+
+### Archive lookup pass: only confirmed snapshots
+- Pattern: a reference-cleanup pass is adding archives to existing citations
+- Preferred action: add `archiwum=` / `zarchiwizowano=` only for snapshots confirmed by Wayback/CDX
+- Notes:
+  - if the source URL already points to Archive.org, treat it as already archived and do not hunt a redundant Wayback snapshot
+  - do not force Wayback into `{{Cytuj książkę}}`; for book citations with only an archived copy, use the full Wayback URL directly in `url=` and keep `data dostępu=`
+
+### Retry canonical OUP article URL when `article-abstract` has no snapshot
+- Pattern: an Oxford Academic citation uses `/article-abstract/...` and Wayback says there is no snapshot
+- Preferred action: retry the canonical `/article/...` URL before giving up on archive lookup
+- Notes: snapshots may exist only for the canonical article page even when the draft currently cites the abstract form
 
 
 ### Verify parameter support per citation-template variant

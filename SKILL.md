@@ -30,6 +30,7 @@ GitHub-preview flow:
 - After link/template cleanup, run a live plwiki parser preview against the full local wikitext with `action=parse`, not just title-existence checks. Prefer POSTing the whole draft text from the local file so preview reflects the exact unpublished state.
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Refresh the article repo from `origin/main` immediately before the comparison, then fetch the live wikitext via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`) and diff local vs live.
+- If Adam says a page is already live and asks for a further pass later, treat live plwiki raw as the source of truth for the next pass: refresh the local `PL.mediawiki` from live raw first, then edit on top of that refreshed file.
 - When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
 - Practical correction from the same session: a pull done earlier in the work is not enough for an exact live-vs-local verdict. If the question is whether local and live are identical right now, do a fresh pull right before the diff.
 - For large articles, prefer this order:
@@ -54,9 +55,10 @@ Startup checklist for every article:
 1. Sync the local `plwiki-sandbox-skill` with its authoritative repo state before doing article work.
 2. Refresh the article repo from `origin/main` before reporting queue state or choosing the next file.
 3. If Adam may have edited the draft in the visual editor or directly on GitHub, refresh the article repo from `origin/main` again before every new cleanup pass, not only at article start.
-4. Pick the source article from the repo root, not from `PL/` or `done/`.
-5. Then read the source `.mediawiki` file fully.
-6. Identify article type, scope, and risky areas:
+4. If Adam indicates the page is already live on plwiki, fetch the current live raw into the local `PL.mediawiki` before starting the next cleanup/fix pass.
+5. Pick the source article from the repo root, not from `PL/` or `done/`.
+6. Then read the source `.mediawiki` file fully.
+7. Identify article type, scope, and risky areas:
    - infobox/template families
    - citations and short-description/date templates
    - internal links likely needing Polish targets
