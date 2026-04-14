@@ -21,6 +21,8 @@ Zasady użycia:
 - `archiwum=` musi prowadzić do prawdziwego archiwum (np. Wayback), nie do permalinku, share URL ani linku z parametrami śledzącymi.
 - Dla artykułów z filozofii czasu nie używaj `[[Kategoria:Filozofia czasu]]`, bo jest czerwona; praktyczny zestaw startowy to `[[Kategoria:Filozofia czasu i przestrzeni]]`, a gdy zakres hasła tego wymaga, także `[[Kategoria:Czas]]`.
 - Po zaciągnięciu live rawa z opublikowanej strony najpierw zachowaj ten stan jako checkpoint synchronizacji. Jeśli live rozwinęło nazwy przypisów do definicji w `<references>...</references>`, nie cofaj tego od razu automatycznie.
+- Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
+- W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
 
 ## Linki do rozbudowy
 - Pomoc:Ilustrowanie — składnia obrazków, podpisów, pozycjonowania i miniaturek

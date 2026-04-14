@@ -17,6 +17,7 @@ Memory and continuity:
 - If access to memory is unavailable in a given runtime, fall back to the local skill references and the article/repo state, then write the newly confirmed lesson back into the skill after the pass.
 - Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
 - `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
+- If the article repo contains task-specific workflow instructions such as `roadmap.md`, treat them as active instructions for that article. Do not stop to ask for approval between routine rounds when the file explicitly says to keep iterating; continue until the article is genuinely polished or you hit a real blocker.
 - When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
 - Adam may append new discoveries to `Linki.md`; read and respect them in future sessions.
 - Keep a local copy of `Linki.md` in sync with the authoritative skill repo copy.
@@ -89,7 +90,7 @@ Before presenting a converted draft, verify:
 - dates, units, punctuation, and quotations adapted to Polish usage
 - inline refs are placed according to plwiki help, normally before closing punctuation; re-check after cleanup passes because edits often move refs to the wrong side
 - internal wikilinks repointed or deliberately left plain if target is doubtful
-- live parser preview via `action=parse` shows no redlinks in the rendered draft and no obvious parser/template errors
+- live parser preview via `action=parse` shows no accidental redlinks in the rendered draft and no obvious parser/template errors; intentional redlinks from verified `{{link-interwiki}}` are acceptable only if they are explicitly expected and are the only remaining redlinks
 - templates converted, removed, or flagged with TODO comments
 - categories translated/replaced/removed
 - references still parse sensibly after translation
@@ -102,6 +103,7 @@ Hard stop:
 - Do not use broad/global regex replacement on `<ref>` punctuation placement. Syntax-blind moves can corrupt references into broken forms like `</ref> name="..."/>`, `<ref. name="..."/>`, or strip the sentence-ending period entirely.
 - When fixing ref placement, operate on the current file content and use targeted, syntax-aware edits; then re-check both sides of the sentence boundary: `...<ref/>.` not `....<ref/>` and not `...<ref/> Następne zdanie`.
 - Do not replace `<references>...</references>` with `{{Przypisy}}` unless all named-ref definitions have already been inlined or otherwise preserved. A removal pass can create dozens of orphaned named refs at once.
+- If a live-synced file keeps named-ref definitions inside `<references>...</references>`, treat false positives from those definition lines as noise. Fix the prose findings, then let the live parser preview decide the real pass/fail outcome.
 
 ## Template and link handling
 
@@ -146,7 +148,7 @@ General rules:
 - When adding Polish-language sources to an article translated from English, prefer sources tightly about the exact concept or dispute in the article, ideally academic publications or credible university-repository records; do not pad bibliography with merely adjacent philosophy-of-time material just because it is in Polish.
 
 
-- Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, `REDLINKS 0`, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and a clean `python3 scripts/check_ref_punctuation.py <article-file>` result.
+- Before commit/push after citation or link cleanup, require a full `action=parse` preview on the exact local draft, no technical error categories (especially `Szablon_cytuj_do_sprawdzenia`), and either `REDLINKS 0` or only the explicitly intended redlinks coming from verified `{{link-interwiki}}`. Also require that `python3 scripts/check_ref_punctuation.py <article-file>` shows no real prose-level problems, even if a live-synced `<references>` block still triggers known false positives.
 - Documentation for `{{Cytuj}}` does not automatically apply to `{{Cytuj pismo}}` or `{{Cytuj książkę}}`; verify less-common params on the exact template variant in live preview instead of assuming inheritance.
 - If explicit access status must be shown (`otwarty`, `zamknięty`, `częściowy`), prefer universal `{{Cytuj}}` after preview verification; do not force `|dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}` unless the exact variant is proven to support it.
 - Do not guess open-access or full-text availability from template docs or vague repository hints; verify against the real landing page, bibliographic record, or direct PDF. If access is closed or uncertain, cite the bibliographic record rather than implying full-text access.
