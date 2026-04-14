@@ -31,7 +31,9 @@ GitHub-preview flow:
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Refresh the article repo from `origin/main` immediately before the comparison, then fetch the live wikitext via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`) and diff local vs live.
 - If Adam says a page is already live and asks for a further pass later, treat live plwiki raw as the source of truth for the next pass: refresh the local `PL.mediawiki` from live raw first, then edit on top of that refreshed file.
+- After syncing a published page back from live, preserve that synced raw in the repo before doing another cleanup pass. If the live version expanded repeated refs into named definitions inside `<references>...</references>` or added categories, do not immediately "normalize" it back locally before the sync checkpoint.
 - When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
+- When a synced live file defines named refs inside `<references>...</references>`, `check_ref_punctuation.py` can report false positives on the reference-definition lines. Treat prose-line findings as the real blocker and do not "fix" the refs block mechanically without checking context.
 - Practical correction from the same session: a pull done earlier in the work is not enough for an exact live-vs-local verdict. If the question is whether local and live are identical right now, do a fresh pull right before the diff.
 - For large articles, prefer this order:
   1. get a previewable full draft into `PL/`
@@ -125,6 +127,7 @@ General rules:
 - Remove enwiki categories.
 - Replace with Polish categories only when confident.
 - Do not translate category names literally unless they match real plwiki naming.
+- For philosophy-of-time pages on plwiki, `[[Kategoria:Filozofia czasu]]` is red; prefer `[[Kategoria:Filozofia czasu i przestrzeni]]`, and add `[[Kategoria:Czas]]` when the article scope clearly warrants it.
 - If category mapping is uncertain, omit categories for now rather than guess.
 
 ## References and citations

@@ -19,6 +19,8 @@ Zasady użycia:
 - Przy przypisach sprawdzaj nie tylko format, ale też czy źródło naprawdę wspiera daną tezę lub tabelę.
 - Gdy trzeba zostawić techniczne oznaczenie problemu lub tymczasowy znacznik porządkowy w wikikodzie, najpierw sprawdź `Pomoc:Znaczniki`, zamiast zgadywać lokalną składnię.
 - `archiwum=` musi prowadzić do prawdziwego archiwum (np. Wayback), nie do permalinku, share URL ani linku z parametrami śledzącymi.
+- Dla artykułów z filozofii czasu nie używaj `[[Kategoria:Filozofia czasu]]`, bo jest czerwona; praktyczny zestaw startowy to `[[Kategoria:Filozofia czasu i przestrzeni]]`, a gdy zakres hasła tego wymaga, także `[[Kategoria:Czas]]`.
+- Po zaciągnięciu live rawa z opublikowanej strony najpierw zachowaj ten stan jako checkpoint synchronizacji. Jeśli live rozwinęło nazwy przypisów do definicji w `<references>...</references>`, nie cofaj tego od razu automatycznie.
 
 ## Linki do rozbudowy
 - Pomoc:Ilustrowanie — składnia obrazków, podpisów, pozycjonowania i miniaturek
