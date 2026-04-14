@@ -17,12 +17,14 @@
 - https://pl.wikipedia.org/wiki/Wikipedia:Bibliografia
 - https://pl.wikipedia.org/wiki/Wikipedia:Opis_zmian - przydatne do krótkich, hasłowych, wiki-stylowych opisów edycji.
 - https://pl.wikipedia.org/wiki/Pomoc:Przypisy
+- https://pl.wikipedia.org/wiki/Pomoc:Znaczniki - przydatne, gdy trzeba oznaczyć fragment/problem lokalnym znacznikiem zamiast improwizować opis w tekście lub komentarzu.
 - https://pl.wikibooks.org/wiki/Szablon:Oprogramowanie_infobox
 
 ## Reguły robocze
 
 
 - Natywne podprzypisy Cite: pełne źródło definiuj raz w `<references>` jako `<ref name="ŹródłoRok">...</ref>`, w tekście używaj `<ref name="ŹródłoRok" />` bez numeru strony i `<ref name="ŹródłoRok" details="s. ..." />` dla miejsc szczegółowych. Nie duplikuj pełnej definicji tego samego `name` w treści.
+- Gdy trzeba zostawić techniczne oznaczenie problemu lub tymczasowy znacznik porządkowy w wikikodzie, najpierw sprawdź `Pomoc:Znaczniki`, zamiast zgadywać lokalną składnię.
 - Przy artykułach o oprogramowaniu na plwiki sprawdzaj najpierw dokumentację `{{Oprogramowanie infobox}}` na Wikibooks.
 - Przy cytatach i odwołaniach do konkretnych miejsc Pisma Świętego na plwiki preferuj `{{Biblia}}` zamiast gołych linków do zewnętrznych serwisów biblijnych.
 - W tym repo po każdej sensownej zmianie rób od razu `git add` + `git commit` + `git push`, bo praca toczy się równolegle na kilku komputerach.
