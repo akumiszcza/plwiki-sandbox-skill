@@ -15,6 +15,7 @@
 - https://pl.wikipedia.org/wiki/Szablon:Link-interwiki - do czytelnego linkowania odpowiedników w innych wiki/projektach, gdy zwykły link wewnętrzny nie wystarcza.
 - https://pl.wikipedia.org/wiki/Wikipedia:Weryfikowalno%C5%9B%C4%87
 - https://pl.wikipedia.org/wiki/Wikipedia:Bibliografia
+- https://pl.wikipedia.org/wiki/Wikipedia:Opis_zmian - przydatne do krótkich, hasłowych, wiki-stylowych opisów edycji.
 - https://pl.wikipedia.org/wiki/Pomoc:Przypisy
 - https://pl.wikibooks.org/wiki/Szablon:Oprogramowanie_infobox
 
