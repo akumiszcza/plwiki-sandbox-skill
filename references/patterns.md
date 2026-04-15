@@ -179,6 +179,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: inspect the real landing page or direct PDF before marking the source as open/closed/partial in the citation
 - Notes: if the full text is closed or uncertain, point to the bibliographic record instead of implying open full-text access
 
+### Prefer direct paywall evidence over aggregator OA hints
+- Pattern: an OA aggregator or metadata service suggests access, but the publisher page shows a purchase wall, login wall, or user-confirmed closed access
+- Preferred action: treat the source as closed unless a real open full-text URL can be reached directly
+- Notes: do not mark `otwarty` on the strength of `OpenAlex`, DOI metadata, or a bot-check page alone; observed paywall / purchase requirement is stronger evidence
+
 ### Commit gate after bibliography or link cleanup
 - Pattern: a citation/link pass looks correct locally and is about to be committed
 - Preferred action: before commit/push, run full `action=parse` preview on the local draft and `python3 scripts/check_ref_punctuation.py <file>`
