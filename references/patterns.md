@@ -177,6 +177,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - in: `<ref>{{cytuj pismo | autor = A | tytuł = T | czasopismo = J | data = 2024 | doi = 10.1234/x}}</ref>`
   - out: `<ref>{{Cytuj | autor = A | tytuł = T | czasopismo = J | data = 2024 | s = 1–8 | doi = 10.1234/x | dostęp = otwarty}}</ref>`
 
+### In `{{Cytuj}}` use `s=` for page ranges, not `strony=`
+- Pattern: a ref is normalized from `{{Cytuj pismo}}` / `{{Cytuj książkę}}` / imported enwiki template into universal `{{Cytuj}}`
+- Preferred action: rewrite page ranges to `|s=` in the final `{{Cytuj}}` call
+- Notes: `|strony=` may look plausible from other template variants, but on plwiki it can trigger `Szablon_cytuj_do_sprawdzenia` in live preview; verify on the exact draft after conversion
+- Example:
+  - in: `{{Cytuj | autor = David W. Allan | tytuł = Statistics of atomic frequency standards | strony = 221–230 }}`
+  - out: `{{Cytuj | autor = David W. Allan | tytuł = Statistics of atomic frequency standards | s = 221–230 }}`
+
 ### Verify real OA/full-text availability before encoding it
 - Pattern: a repository record or helper page makes access status look ambiguous
 - Preferred action: inspect the real landing page or direct PDF before marking the source as open/closed/partial in the citation
