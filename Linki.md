@@ -24,6 +24,8 @@ Zasady użycia:
 - Jeśli Adam po publikacji prosi już tylko o archiwa albo drobny cleanup, rozdziel to na dwa checkpointy: najpierw sync live raw + commit/push stanu zsynchronizowanego, dopiero potem właściwy pass archiwizacyjny lub porządkowy.
 - Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
 - W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
+- Gdy trzeba jawnie oznaczyć status dostępu źródła (`otwarty`, `zamknięty`, `częściowy`), najpierw sprawdź realną landing page albo działający full text, potem preferuj konwersję tego refu do `{{Cytuj}}` z `dostęp=`. `{{Otwarty dostęp}}` / `{{Paywall}}` zostaw jako fallback.
+- Nie zakładaj, że mniej oczywiste pola z `Szablon:Cytuj` działają identycznie w `{{Cytuj pismo}}` i `{{Cytuj książkę}}`; pola takie jak `dostęp=` potwierdzaj parser preview exact draftu.
 - Przy auth workflow Wayback nie zakładaj gotowości tylko dlatego, że istnieje `~/.venvs/savepagenow/bin/python` i w env są klucze. Przed większym retry sprawdź też wprost `python -c "import savepagenow"`; jeśli import nie działa albo endpointy dają tylko mieszankę `403` / `503` / `520`, traktuj brak wyniku jako brak potwierdzenia, nie jako dowód braku snapshotu.
 
 ## Linki do rozbudowy
