@@ -21,8 +21,10 @@ Zasady użycia:
 - `archiwum=` musi prowadzić do prawdziwego archiwum (np. Wayback), nie do permalinku, share URL ani linku z parametrami śledzącymi.
 - Dla artykułów z filozofii czasu nie używaj `[[Kategoria:Filozofia czasu]]`, bo jest czerwona; praktyczny zestaw startowy to `[[Kategoria:Filozofia czasu i przestrzeni]]`, a gdy zakres hasła tego wymaga, także `[[Kategoria:Czas]]`.
 - Po zaciągnięciu live rawa z opublikowanej strony najpierw zachowaj ten stan jako checkpoint synchronizacji. Jeśli live rozwinęło nazwy przypisów do definicji w `<references>...</references>`, nie cofaj tego od razu automatycznie.
+- Jeśli Adam po publikacji prosi już tylko o archiwa albo drobny cleanup, rozdziel to na dwa checkpointy: najpierw sync live raw + commit/push stanu zsynchronizowanego, dopiero potem właściwy pass archiwizacyjny lub porządkowy.
 - Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
 - W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
+- Przy auth workflow Wayback nie zakładaj gotowości tylko dlatego, że istnieje `~/.venvs/savepagenow/bin/python` i w env są klucze. Przed większym retry sprawdź też wprost `python -c "import savepagenow"`; jeśli import nie działa albo endpointy dają tylko mieszankę `403` / `503` / `520`, traktuj brak wyniku jako brak potwierdzenia, nie jako dowód braku snapshotu.
 
 ## Linki do rozbudowy
 - Pomoc:Ilustrowanie — składnia obrazków, podpisów, pozycjonowania i miniaturek
