@@ -172,10 +172,10 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 ### Prefer `{{Cytuj}}` for explicit access-status labels
 - Pattern: the draft needs to say that a source is `otwarty`, `zamknięty`, or `częściowy`
 - Preferred action: convert the relevant ref to universal `{{Cytuj}}` when practical, then use `dostęp=...` there if preview confirms the exact draft renders cleanly; avoid forcing `dostęp=` into `{{Cytuj pismo}}` or `{{Cytuj książkę}}`
-- Notes: rerun full parser preview afterward, keep a bibliographic-record link when full text is not openly available, and treat standalone `{{Otwarty dostęp}}` / `{{Paywall}}` as fallback only
+- Notes: rerun full parser preview afterward, keep a bibliographic-record link when full text is not openly available, treat standalone `{{Otwarty dostęp}}` / `{{Paywall}}` as fallback only, and remember that page ranges in `{{Cytuj}}` use `s=` rather than `strony=`
 - Example:
   - in: `<ref>{{cytuj pismo | autor = A | tytuł = T | czasopismo = J | data = 2024 | doi = 10.1234/x}}</ref>`
-  - out: `<ref>{{Cytuj | autor = A | tytuł = T | czasopismo = J | data = 2024 | doi = 10.1234/x | dostęp = otwarty}}</ref>`
+  - out: `<ref>{{Cytuj | autor = A | tytuł = T | czasopismo = J | data = 2024 | s = 1–8 | doi = 10.1234/x | dostęp = otwarty}}</ref>`
 
 ### Verify real OA/full-text availability before encoding it
 - Pattern: a repository record or helper page makes access status look ambiguous
