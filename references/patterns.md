@@ -135,6 +135,16 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: fetch the current live raw into the local `PL.mediawiki` before editing
 - Notes: even if the repo was synced earlier, live raw is the source of truth for the next pass
 
+### After `/new` or compacted resume, verify repo state before trusting prior claims
+- Pattern: the session resumes after `/new`, compaction, replay, or any context where earlier chat claims may be partial or stale
+- Preferred action: check `git log`, `git status`, and the current article file before reporting what was already done or choosing the next pass
+- Notes: repo state is stronger evidence than recollection or an earlier assistant summary
+
+### Do not overwrite a fuller local draft just because live exists
+- Pattern: live plwiki raw exists, but the local `PL.mediawiki` is visibly broader or more source-rich
+- Preferred action: diff live vs local first and merge carefully instead of replacing local with live wholesale
+- Notes: use live as the baseline for publication state, not as an excuse to discard unpublished improvements
+
 
 ## References and citation templates
 
@@ -405,6 +415,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: translated sentence keeps too many English-style subordinate clauses
 - Preferred action: split into two shorter Polish sentences when readability improves
 - Example: describe the incident first, then explain the consent issue in a second sentence
+
+### Expand a developed live article, do not collapse it back to a stubby summary
+- Pattern: the current plwiki/live article already has substantial section structure and sourced detail
+- Preferred action: preserve that structure and add verified detail where needed instead of rewriting it into a much shorter synthetic overview
+- Notes: this matters especially for biography and philosophy/science articles where live already contains multiple thematic sections
 
 ### Lock preferred Polish terminology once chosen
 - Pattern: during review Adam or the article context establishes a Polish preferred term for something that also has an English source-language label

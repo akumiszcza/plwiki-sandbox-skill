@@ -18,6 +18,7 @@ Memory and continuity:
 - Treat `Linki.md` in the skill/repo as a living helper file for Polish Wikipedia editing rules, template docs, policy/help pages, and short local notes distilled from those sources.
 - `Linki.md` is primarily for agent use: treat it as a practical "przepisy polskiej Wikipedii" notebook, not user-facing prose.
 - If the article repo contains task-specific workflow instructions such as `roadmap.md`, treat them as active instructions for that article. Do not stop to ask for approval between routine rounds when the file explicitly says to keep iterating; continue until the article is genuinely polished or you hit a real blocker.
+- After `/new`, a compacted session, or any replay-like resume, treat chat recollection as advisory only. Before reporting progress or choosing the next pass, verify the exact article state in the repo with `git log`, `git status`, and a direct read/diff of the relevant `PL.mediawiki`.
 - When you find an official plwiki help/policy/template-doc page that is likely to matter again, add it to `Linki.md` with a short note about why it matters.
 - Adam may append new discoveries to `Linki.md`; read and respect them in future sessions.
 - Keep a local copy of `Linki.md` in sync with the authoritative skill repo copy.
@@ -32,6 +33,7 @@ GitHub-preview flow:
 - For plwiki API calls from scripts/helpers, always send an explicit `User-Agent`; on this host bare/default urllib requests can get `HTTP 403`, which is a tooling artifact, not evidence that the page/query is invalid.
 - If Adam saved extra fixes directly on-wiki, do not assume the local `PL.mediawiki` still matches live. Refresh the article repo from `origin/main` immediately before the comparison, then fetch the live wikitext via `action=query&prop=revisions&rvslots=main&rvprop=content|timestamp&titles=<title>` (or `?action=raw`) and diff local vs live.
 - If Adam says a page is already live and asks for a further pass later, treat live plwiki raw as the source of truth for the next pass: refresh the local `PL.mediawiki` from live raw first, then edit on top of that refreshed file.
+- If local and live are materially different, do not blindly overwrite the richer draft with live raw. Diff them first and preserve source-backed local improvements unless live clearly supersedes them.
 - After syncing a published page back from live, preserve that synced raw in the repo before doing another cleanup pass. If the live version expanded repeated refs into named definitions inside `<references>...</references>` or added categories, do not immediately "normalize" it back locally before the sync checkpoint.
 - When checking whether a published page matches the local draft, verify the target title before comparing content. A narrow local article can publish under a different real plwiki title; in this workflow `Eternalism (philosophy of time)` mapped to live `Eternalizm (filozofia czasu)`, while `Eternalizm` was a different older page.
 - When a synced live file defines named refs inside `<references>...</references>`, `check_ref_punctuation.py` can report false positives on the reference-definition lines. Treat prose-line findings as the real blocker and do not "fix" the refs block mechanically without checking context.
@@ -78,6 +80,7 @@ Startup checklist for every article:
 - Keep unsupported claims out; do not invent sources or facts.
 - Preserve citations unless there is a clear formatting reason to adjust them.
 - Rewrite prose into natural Polish, not machine-calque Polish.
+- If the live/pl repo version already has a broader sourced structure, preserve and expand that structure instead of compressing it back into a shorter summary article.
 - Replace or remove English-wiki-only maintenance templates, categories, and metadata.
 - When unsure whether a template exists on plwiki, leave a visible TODO comment near the spot instead of fabricating a template name.
 
