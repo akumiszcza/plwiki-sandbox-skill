@@ -28,6 +28,7 @@ Zasady użycia:
 - Gdy trzeba jawnie oznaczyć status dostępu źródła (`otwarty`, `zamknięty`, `częściowy`), najpierw sprawdź realną landing page albo działający full text, potem preferuj konwersję tego refu do `{{Cytuj}}` z `dostęp=`. `{{Otwarty dostęp}}` / `{{Paywall}}` zostaw jako fallback.
 - Nie zakładaj, że mniej oczywiste pola z `Szablon:Cytuj` działają identycznie w `{{Cytuj pismo}}` i `{{Cytuj książkę}}`; pola takie jak `dostęp=` potwierdzaj parser preview exact draftu.
 - Przy konwersji przypisu do `{{Cytuj}}` pamiętaj też o stronach: używaj `s=`, nie `strony=`. To częsty błąd i na plwiki potrafi kończyć się kategorią `Szablon cytuj do sprawdzenia`.
+- Przy webowym refie w `{{Cytuj}}` nie dopisuj odruchowo `typ=www`. Na plwiki ten wariant potrafi wrzucać artykuł do ukrytej kategorii `Szablon cytuj do sprawdzenia`, mimo że zwykłe `{{Cytuj|url=...}}` przechodzi czysto. Jeśli nie ma wyraźnej potrzeby, zostaw bez `typ=www` i potwierdź exact parser preview draftu.
 - Przy auth workflow Wayback nie zakładaj gotowości tylko dlatego, że istnieje `~/.venvs/savepagenow/bin/python` i w env są klucze. Przed większym retry sprawdź też wprost `python -c "import savepagenow"`; jeśli import nie działa albo endpointy dają tylko mieszankę `403` / `503` / `520`, traktuj brak wyniku jako brak potwierdzenia, nie jako dowód braku snapshotu.
 
 ## Linki do rozbudowy
