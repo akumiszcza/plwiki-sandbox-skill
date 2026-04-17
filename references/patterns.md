@@ -133,7 +133,9 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 ### Published-page follow-up pass
 - Pattern: Adam says the page is already live on plwiki and wants another cleanup or archive pass
 - Preferred action: fetch the current live raw into the local `PL.mediawiki` before editing
-- Notes: even if the repo was synced earlier, live raw is the source of truth for the next pass
+- Notes:
+  - even if the repo was synced earlier, live raw is the source of truth for the next pass
+  - if the published page rewrites repeated refs into named definitions inside `<references>...</references>`, repoints some wikilink targets, or adds `{{Kontrola autorytatywna}}`, keep that literal live shape for the sync checkpoint instead of immediately restyling it back to the pre-publish draft
 
 ### After `/new` or compacted resume, verify repo state before trusting prior claims
 - Pattern: the session resumes after `/new`, compaction, replay, or any context where earlier chat claims may be partial or stale
