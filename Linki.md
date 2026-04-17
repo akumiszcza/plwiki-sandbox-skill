@@ -24,6 +24,7 @@ Zasady użycia:
 - Jeśli Adam po publikacji prosi już tylko o archiwa albo drobny cleanup, rozdziel to na dwa checkpointy: najpierw sync live raw + commit/push stanu zsynchronizowanego, dopiero potem właściwy pass archiwizacyjny lub porządkowy.
 - Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
 - W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
+- Jeśli `{{link-interwiki}}` w finalnym passie zaczyna dorzucać niechciane czerwone linki albo ukrytą kategorię `Artykuły z propozycjami tłumaczeń`, a taki czerwony link nie jest naprawdę potrzebny, lepiej wrócić do plain textu albo do zwykłego istniejącego wikilinku.
 - Gdy trzeba jawnie oznaczyć status dostępu źródła (`otwarty`, `zamknięty`, `częściowy`), najpierw sprawdź realną landing page albo działający full text, potem preferuj konwersję tego refu do `{{Cytuj}}` z `dostęp=`. `{{Otwarty dostęp}}` / `{{Paywall}}` zostaw jako fallback.
 - Nie zakładaj, że mniej oczywiste pola z `Szablon:Cytuj` działają identycznie w `{{Cytuj pismo}}` i `{{Cytuj książkę}}`; pola takie jak `dostęp=` potwierdzaj parser preview exact draftu.
 - Przy konwersji przypisu do `{{Cytuj}}` pamiętaj też o stronach: używaj `s=`, nie `strony=`. To częsty błąd i na plwiki potrafi kończyć się kategorią `Szablon cytuj do sprawdzenia`.
