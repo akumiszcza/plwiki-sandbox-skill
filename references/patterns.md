@@ -210,6 +210,11 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: before commit/push, run full `action=parse` preview on the local draft and `python3 scripts/check_ref_punctuation.py <file>`
 - Success condition: `REDLINKS 0`, `ERROR_CATS 0`, no `Szablon_cytuj_do_sprawdzenia`, and script output like `OK: no obvious ref/punctuation issues found`
 
+### Ignore edit-section UI links when scraping redlinks from parser HTML
+- Pattern: a helper scans `action=parse` HTML for redlinks and reports fake targets such as `Edytuj kod źródłowy sekcji: ...`
+- Preferred action: ignore anchors inside `mw-editsection` / edit-section UI chrome and count only redlinks coming from article content
+- Notes: otherwise parser-based QA can falsely report redlinks even when the draft itself is clean
+
 ### Broader real target with narrower display label
 - Pattern: a narrow concept lacks a plwiki page, but a broader verified page covers the same area
 - Preferred action: link to the broader real page with a narrower display label if the statement stays truthful in context
