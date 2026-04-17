@@ -21,6 +21,7 @@ Zasady użycia:
 - `archiwum=` musi prowadzić do prawdziwego archiwum (np. Wayback), nie do permalinku, share URL ani linku z parametrami śledzącymi.
 - Dla artykułów z filozofii czasu nie używaj `[[Kategoria:Filozofia czasu]]`, bo jest czerwona; praktyczny zestaw startowy to `[[Kategoria:Filozofia czasu i przestrzeni]]`, a gdy zakres hasła tego wymaga, także `[[Kategoria:Czas]]`.
 - Po zaciągnięciu live rawa z opublikowanej strony najpierw zachowaj ten stan jako checkpoint synchronizacji. Jeśli live rozwinęło nazwy przypisów do definicji w `<references>...</references>`, nie cofaj tego od razu automatycznie.
+- Przy czystym syncu live nie "poprawiaj" od razu opublikowanej wersji tylko dlatego, że lokalny draft wyglądał stylistycznie lepiej. Jeśli live znormalizowało link, kapitalizację, kategorię albo układ przypisów, taki literalny stan traktuj jako source of truth dla checkpointu synchronizacji.
 - Jeśli Adam po publikacji prosi już tylko o archiwa albo drobny cleanup, rozdziel to na dwa checkpointy: najpierw sync live raw + commit/push stanu zsynchronizowanego, dopiero potem właściwy pass archiwizacyjny lub porządkowy.
 - Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
 - W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
