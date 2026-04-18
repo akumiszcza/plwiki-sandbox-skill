@@ -171,6 +171,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - if the source URL already points to Archive.org, treat it as already archived and do not hunt a redundant Wayback snapshot
   - do not force Wayback into `{{Cytuj książkę}}`; for book citations with only an archived copy, use the full Wayback URL directly in `url=` and keep `data dostępu=`
 
+### No `archiwum=` pass for book citations
+- Pattern: an archive-cleanup pass encounters `{{Cytuj książkę}}`
+- Preferred action: do not add `archiwum=` / `zarchiwizowano=` to book citations as a normal cleanup step
+- Notes:
+  - if the citation is to the book itself, keep it as a normal book ref without Wayback fields
+  - if the only usable online witness is an archived page or scan, put that archived address directly in `url=` instead of mixing book metadata with archive parameters
+  - if live plwiki removes an archive from a book ref, treat that as the correct shape and sync it back to the repo instead of restoring the archive locally
+
 ### Retry canonical OUP article URL when `article-abstract` has no snapshot
 - Pattern: an Oxford Academic citation uses `/article-abstract/...` and Wayback says there is no snapshot
 - Preferred action: retry the canonical `/article/...` URL before giving up on archive lookup
