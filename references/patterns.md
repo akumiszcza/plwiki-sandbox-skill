@@ -170,6 +170,8 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Notes:
   - if the source URL already points to Archive.org, treat it as already archived and do not hunt a redundant Wayback snapshot
   - do not force Wayback into `{{Cytuj książkę}}`; for book citations with only an archived copy, use the full Wayback URL directly in `url=` and keep `data dostępu=`
+  - prefer CDX or equally direct snapshot evidence over the weaker Wayback `available` endpoint; `available` can return no snapshot even when CDX later shows captures
+  - if `available` is empty, treat that as "not yet confirmed", not as proof that no archive exists
 
 ### No `archiwum=` pass for book citations
 - Pattern: an archive-cleanup pass encounters `{{Cytuj książkę}}`
@@ -209,7 +211,10 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 ### Verify real OA/full-text availability before encoding it
 - Pattern: a repository record or helper page makes access status look ambiguous
 - Preferred action: inspect the real landing page or direct PDF before marking the source as open/closed/partial in the citation
-- Notes: if the full text is closed or uncertain, point to the bibliographic record instead of implying open full-text access
+- Notes:
+  - if the full text is closed or uncertain, point to the bibliographic record instead of implying open full-text access
+  - keep three questions separate: archive existence, landing-page accessibility, and actual full-text openness
+  - anti-bot `403` or similar blocking is not by itself proof that the source is closed to human readers
 
 ### Prefer direct paywall evidence over aggregator OA hints
 - Pattern: an OA aggregator or metadata service suggests access, but the publisher page shows a purchase wall, login wall, or user-confirmed closed access
@@ -535,8 +540,9 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Nie umieszczaj `{{Legenda}}` poza znacznikiem `[[Plik:...]]` jeśli chcesz legendę widoczną jako część podpisu obrazka
 
 ### Archiwa przypisów (`archiwum=` / `zarchiwizowano=`)
-- Dla przypisów z `|url=` bez archiwum można półautomatycznie uzupełniać `|archiwum=` i `|zarchiwizowano=` przez Wayback Machine API: `https://archive.org/wayback/available?url=...`
+- Dla przypisów z `|url=` bez archiwum można półautomatycznie uzupełniać `|archiwum=` i `|zarchiwizowano=` przez Wayback Machine API, ale sam endpoint `available` traktuj tylko jako szybki sygnał, nie jako dowód braku snapshotu
 - W tym środowisku preferuj prosty skrypt Python do odpytania Wayback API; bashowe tablice/expansje mogą zostać zablokowane jako obfuscation
+- Gdy wynik ma znaczenie redakcyjne, preferuj twarde potwierdzenie snapshotu przez CDX albo równoważny bezpośredni zapis
 - Jeśli snapshot istnieje, wpisz prawdziwy adres Wayback w formie `https://web.archive.org/web/YYYYMMDDHHMMSS/original-url`
 - `zarchiwizowano=` ustawiaj jako `YYYY-MM-DD` wyciągnięte z timestampa Wayback
 - Nie wpisuj jako `archiwum=` zwykłego permalinku strony, share URL ani linku z parametrami `?st=...`, `reflink=...`, `fbclid=...` itp. To nie jest archiwum
