@@ -140,6 +140,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - if Adam asks only to "dociągnąć" the live page, an exact raw sync is still the goal even when the only diff is cosmetic byte-shape such as a final newline at EOF; confirm repo = live explicitly instead of skipping the checkpoint as a no-op
   - if Adam says the topic is finished after publication, do the exact live sync plus memory/skill notes and stop there instead of bundling extra cleanup into the closeout commit
 
+### Archive published article after exact live sync
+- Pattern: Adam says the article is already live and the thread/topic is being closed
+- Preferred action: first sync exact live raw into local `PL.mediawiki`, then move the whole article directory to `_ARCHIVE/<Title>` in the same repo, and commit that archive state
+- Notes:
+  - archived `PL.mediawiki` should represent the exact published live version, not the last pre-publish draft
+  - if git records this as delete + add instead of a clean rename after the live-sync step, that is acceptable
+  - when the topic is being closed, also write the reusable lesson to daily memory and the skill repo before stopping
+
 ### After `/new` or compacted resume, verify repo state before trusting prior claims
 - Pattern: the session resumes after `/new`, compaction, replay, or any context where earlier chat claims may be partial or stale
 - Preferred action: check `git log`, `git status`, and the current article file before reporting what was already done or choosing the next pass
