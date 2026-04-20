@@ -139,6 +139,7 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - this also applies when live keeps or restores wording/link choices that differ from the latest local polish pass; checkpoint the exact published state first, then do any cleanup in a separate follow-up pass
   - if Adam asks only to "dociągnąć" the live page, an exact raw sync is still the goal even when the only diff is cosmetic byte-shape such as a final newline at EOF; confirm repo = live explicitly instead of skipping the checkpoint as a no-op
   - if Adam says the topic is finished after publication, do the exact live sync plus memory/skill notes and stop there instead of bundling extra cleanup into the closeout commit
+  - if Adam also wants the topic moved to `_ARCHIVE`, split that closeout into two commits: first `Sync <Title> from live plwiki`, then a separate archive move commit so the archived `PL.mediawiki` is provably the exact published version
 
 ### Archive published article after exact live sync
 - Pattern: Adam says the article is already live and the thread/topic is being closed
@@ -201,6 +202,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: a generic citation-template doc suggests a field such as `dostęp=`
 - Preferred action: verify the exact target template variant in live preview; do not assume `{{Cytuj pismo}}` or `{{Cytuj książkę}}` inherit every field supported by `{{Cytuj}}`
 - Notes: preview may expose `Nieznane pola: "dostęp"` and hidden error categories such as `Szablon_cytuj_do_sprawdzenia`
+
+### Exact parser preview outranks the general citation heuristic
+- Pattern: a reusable citation rule points one way, but the exact unpublished draft for a specific article renders cleaner with a different template shape
+- Preferred action: trust the full `action=parse` preview of the exact local draft over the generic heuristic, then record the exception if it is likely to recur
+- Notes:
+  - do not force a global rule like "always normalize to `{{Cytuj}}` for `dostęp=`" onto a draft that preview-proves cleaner with `{{Cytuj stronę}}` or another variant
+  - decide on the final template shape per article from the rendered draft, not from memory of a previous pass alone
+  - if the article later goes live, sync the exact live citation shape back into the repo before any new cleanup
 
 ### Prefer `{{Cytuj}}` for explicit access-status labels
 - Pattern: the draft needs to say that a source is `otwarty`, `zamknięty`, or `częściowy`
@@ -280,6 +289,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: Adam edits the article in the visual editor or directly on GitHub during an ongoing cleanup session
 - Preferred action: refresh the article repo from `origin/main` again before the next pass, even if it was already synced earlier in the session
 - Notes: do not keep patching against stale local content; visual-editor changes can silently invalidate line-based fixes
+
+### Verify real git and file state before claiming a pass is done
+- Pattern: helper scripts hang, the repo has unrelated dirt, or memory suggests a cleanup/commit already happened
+- Preferred action: before reporting success, check the actual article file on disk plus `git status` and `git log` for the article repo
+- Notes:
+  - do not trust recollection of a diff, a half-finished script run, or an earlier assistant message as proof that the pass was committed
+  - this matters especially when the source `EN.mediawiki` or other files are dirty and could affect what is safely committable
+  - if a QA helper times out or hangs on a large article, fall back to parser preview and manual audit, but still verify the actual git/file state before telling Adam the pass is closed
 
 ### Raw/broken ref opener cleanup
 - Pattern: malformed raw refs such as `<ref.>`, `<ref,>`, `<ref >`, `<ref. name="..."/>`, `<ref, name="..."/>`

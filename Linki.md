@@ -23,6 +23,7 @@ Zasady użycia:
 - Po zaciągnięciu live rawa z opublikowanej strony najpierw zachowaj ten stan jako checkpoint synchronizacji. Jeśli live rozwinęło nazwy przypisów do definicji w `<references>...</references>`, nie cofaj tego od razu automatycznie.
 - Przy czystym syncu live nie "poprawiaj" od razu opublikowanej wersji tylko dlatego, że lokalny draft wyglądał stylistycznie lepiej. Jeśli live znormalizowało link, kapitalizację, kategorię albo układ przypisów, taki literalny stan traktuj jako source of truth dla checkpointu synchronizacji.
 - Jeśli Adam po publikacji prosi już tylko o archiwa albo drobny cleanup, rozdziel to na dwa checkpointy: najpierw sync live raw + commit/push stanu zsynchronizowanego, dopiero potem właściwy pass archiwizacyjny lub porządkowy.
+- Gdy Adam zamyka już opublikowany wątek i chce przenieść temat do `_ARCHIVE`, trzymaj kolejność: exact live sync do `PL.mediawiki`, osobny commit `Sync <Tytuł> from live plwiki`, potem przeniesienie całego katalogu do `_ARCHIVE/<Tytuł>` w osobnym commicie. Archiwalne `PL.mediawiki` ma wtedy odpowiadać literalnie wersji live.
 - Jeśli dla danego hasła repo zawiera `roadmap.md`, traktuj go jako aktywną instrukcję pracy i rób kolejne rundy bez pytania, dopóki są realne poprawki.
 - W końcowym parser preview akceptowalne są tylko świadomie pozostawione czerwone linki z `{{link-interwiki}}`; każdy inny redlink wymaga poprawki albo odlinkowania.
 - Jeśli `{{link-interwiki}}` w finalnym passie zaczyna dorzucać niechciane czerwone linki albo ukrytą kategorię `Artykuły z propozycjami tłumaczeń`, a taki czerwony link nie jest naprawdę potrzebny, lepiej wrócić do plain textu albo do zwykłego istniejącego wikilinku.
@@ -32,6 +33,7 @@ Zasady użycia:
 - Przy konwersji przypisu do `{{Cytuj}}` pamiętaj też o stronach: używaj `s=`, nie `strony=`. To częsty błąd i na plwiki potrafi kończyć się kategorią `Szablon cytuj do sprawdzenia`.
 - Przy webowym refie w `{{Cytuj}}` nie dopisuj odruchowo `typ=www`. Na plwiki ten wariant potrafi wrzucać artykuł do ukrytej kategorii `Szablon cytuj do sprawdzenia`, mimo że zwykłe `{{Cytuj|url=...}}` przechodzi czysto. Jeśli nie ma wyraźnej potrzeby, zostaw bez `typ=www` i potwierdź exact parser preview draftu.
 - Przy auth workflow Wayback nie zakładaj gotowości tylko dlatego, że istnieje `~/.venvs/savepagenow/bin/python` i w env są klucze. Przed większym retry sprawdź też wprost `python -c "import savepagenow"`; jeśli import nie działa albo endpointy dają tylko mieszankę `403` / `503` / `520`, traktuj brak wyniku jako brak potwierdzenia, nie jako dowód braku snapshotu.
+- Korekta od Adama z 2026-04-18: mimo wcześniejszego ujawnienia `SAVEPAGENOW_ACCESS_KEY` i `SAVEPAGENOW_SECRET_KEY`, mam dalej używać istniejących kluczy. Nie powtarzać ich w czacie ani dokumentacji, ale wolno korzystać z nich operacyjnie, dopóki Adam tego nie odwoła.
 - Do potwierdzania archiwów preferuj CDX albo równie bezpośredni dowód snapshotu. Sam wynik `archive.org/wayback/available` traktuj ostrożnie, bo potrafi zwrócić pusty wynik mimo istniejących capture'ów.
 
 ## Linki do rozbudowy
