@@ -480,6 +480,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
   - avoid: mixing `Wielka Stopa` and `Bigfoot` interchangeably in later Polish prose
 - Notes: if the article itself marks a term with `{{ang.|...}}`, treat that as evidence that the English form is source-language annotation, not the default Polish running term
 
+### Use one shared `{{ang.|...}}` for acronym expansions like CUDO/CUDOS
+- Pattern: a Polish sentence explains an English acronym by spelling out several English source terms in sequence
+- Preferred action: put the whole source expansion into one shared `{{ang.|...}}` instead of repeating separate language markers on each word
+- Example:
+  - preferred: `akronim CUDO od {{ang.|communism, universalism, disinterestedness, organized skepticism}}`
+  - avoid: `od ang. communism, ang. universalism, ang. disinterestedness...`
+- Notes: this reads cleaner in plwiki prose and matches Adam's preferred cleanup style from the `Normy Mertona` pass
+
 ### Cite language consistently for foreign-language sources
 - Pattern: some foreign-language references display `(ang.)` while others do not because `język=` is present only on some citations
 - Preferred action: add `|język=` consistently for non-Polish sources when the source language is clear
