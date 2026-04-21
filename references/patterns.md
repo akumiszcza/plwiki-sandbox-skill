@@ -135,6 +135,7 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: fetch the current live raw into the local `PL.mediawiki` before editing
 - Notes:
   - even if the repo was synced earlier, live raw is the source of truth for the next pass
+  - for already-live pages, assume the task is an incremental improvement of the published article, not a greenfield rewrite, unless Adam explicitly asks for a rebuild
   - if the published page rewrites repeated refs into named definitions inside `<references>...</references>`, repoints some wikilink targets, or adds `{{Kontrola autorytatywna}}`, keep that literal live shape for the sync checkpoint instead of immediately restyling it back to the pre-publish draft
   - this also applies when live keeps or restores wording/link choices that differ from the latest local polish pass; checkpoint the exact published state first, then do any cleanup in a separate follow-up pass
   - if Adam asks only to "dociągnąć" the live page, an exact raw sync is still the goal even when the only diff is cosmetic byte-shape such as a final newline at EOF; confirm repo = live explicitly instead of skipping the checkpoint as a no-op
@@ -244,6 +245,8 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Pattern: a citation/link pass looks correct locally and is about to be committed
 - Preferred action: before commit/push, run full `action=parse` preview on the local draft and `python3 scripts/check_ref_punctuation.py <file>`
 - Success condition: `REDLINKS 0`, `ERROR_CATS 0`, no `Szablon_cytuj_do_sprawdzenia`, and script output like `OK: no obvious ref/punctuation issues found`
+- Notes:
+  - for mature live articles, prefer one compact pass per commit, for example refs-only, one audit-fix bundle, or one narrow wording/source cleanup
 
 ### Ignore edit-section UI links when scraping redlinks from parser HTML
 - Pattern: a helper scans `action=parse` HTML for redlinks and reports fake targets such as `Edytuj kod źródłowy sekcji: ...`
@@ -296,6 +299,7 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Notes:
   - do not trust recollection of a diff, a half-finished script run, or an earlier assistant message as proof that the pass was committed
   - this matters especially when the source `EN.mediawiki` or other files are dirty and could affect what is safely committable
+  - if the main clone is dirty in unrelated files and blocks pull/rebase, treat it as unsafe for the current pass and switch to a fresh helper clone synced from remote instead of patching on top of stale local state
   - if a QA helper times out or hangs on a large article, fall back to parser preview and manual audit, but still verify the actual git/file state before telling Adam the pass is closed
 
 ### Raw/broken ref opener cleanup
@@ -337,6 +341,14 @@ Keep this file short and practical. Add only patterns that are likely to recur.
 - Preferred action: replace with an explicit Polish note or template only if there is a confirmed plwiki convention; otherwise add a small manual note
 - Current safe draft pattern: `|id={{Subskrypcja wymagana}}`
 - Notes: verify later whether a better house style exists on plwiki
+
+### Conservative framing for very recent cosmology/program results
+- Pattern: article discusses very recent survey or mission outputs such as DESI/Euclid-style cosmology results
+- Preferred action: phrase them conservatively and encyclopedically, distinguishing clearly between dataset-alone results and stronger hints that appear only in combined analyses
+- Notes:
+  - avoid newsy wording like "wzmacniające przesłanki" when the effect remains below standard discovery threshold
+  - if the stronger claim depends on combining BAO with CMB, supernovae, weak lensing, or similar datasets, say that explicitly in prose
+  - prefer paper-level refs over only press/news pages when available, but keep the wording cautious even then
 
 
 ### Verify actual plwiki page titles before repointing links
